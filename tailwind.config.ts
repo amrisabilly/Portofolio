@@ -8,10 +8,10 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+      fontFamily:{
+        logo:["Oleo Script", "system-ui"],
+        primary: ["Poppins", "sans-serif"]
+      }
     },
   },
   plugins: [],
