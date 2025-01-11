@@ -11,6 +11,18 @@ export default {
       fontFamily:{
         logo:["Oleo Script", "system-ui"],
         primary: ["Poppins", "sans-serif"]
+      },
+      backgroundColor:{
+        "primary": "#00A8CD",
+        "secondary": "#87E9FE",
+        "black": "#14181A",
+        "white": "#FFFFFF",
+      },
+      textColor:{
+        "primary": "#00A8CD",
+        "secondary": "#87E9FE",
+        "black": "#14181A",
+        "white": "#FFFFFF",
       }
     },
   },
