@@ -12,8 +12,8 @@ const Navbar = () => {
   };
   return (
     <div className="bg-black px-10 md:px-14 lg:px-20 py-5 shadow-md fixed top-0 left-0 w-full">
-      <div className="items-center justify-between flex ">
-        <a href="#home" className="font-semibold text-[24px] text-white">A.S.</a>
+      <div className="items-center justify-between flex">
+        <a href="" className="font-semibold text-[24px] text-white">A.S.</a>
         {/* Button Mobile */}
         <button className="md:hidden" onClick={toggelMenu}>
           <Image src={ArrowOpen} alt="Menu" className="w-6" />
