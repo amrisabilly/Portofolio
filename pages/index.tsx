@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Profile1 from "@/public/Images/Profile1.svg";
 import Profile2 from "@/public/Images/Profile2.svg";
 import Certification from "@/public/Images/Certification.svg";
-
+import FormContact from "@/components/FormContact";
 //Assets
 import { Project, Skill } from "../components/Asset/assets";
 
@@ -28,7 +28,7 @@ const HomePage = () => {
 
       {/* Home */}
       <div className="flex flex-col md:flex-row justify-between mb-[3em]" id="">
-        <div className="pt-28 md:pt-40 lg:pt-48 w-full md:w-[28em] lg:w-[35em] text-center md:text-left px-0 md:px-5">
+        <div className="pt-28 md:pt-40 lg:pt-48 w-full md:w-[35em] text-center md:text-left px-0 md:px-5">
           <h1 className="text-[40px] font-medium mb-1">
             HI I’m
             <span className="block sm:hidden">Amri Sabilly</span>
@@ -64,18 +64,8 @@ const HomePage = () => {
           </div>
         </div>
         <div className="pt-[65px] md:pt-[90px] hidden md:block">
-      {/* Motion.div with animation for image */}
-      <motion.div
-        className="w-[574px] h-[589px] cursor-grab"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        whileDrag={{ scale: 0.9, rotate: 10 }}
-        drag
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <Image src={Profile1} alt="Menu" className="w-full h-full" />
-      </motion.div>
-    </div>
+          <Image src={Profile1} alt="Menu" className="w-[574px] h-[589px]" />
+        </div>
       </div>
 
       <div
@@ -216,40 +206,7 @@ const HomePage = () => {
           bawah ini!
         </p>
 
-        <div className="w-full bg-gradient-to-r from-transparent via-[#525151]/10 to-[#525151]/20 h-[371px] pt-5 sm:pt-5 md:pt-8 mb-[1em] md:mb-[3em] lg:mb-[3em]">
-          <form
-            action=""
-            className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 md:gap-10 text-white text-[12px] md:text-[16px] px-12 md:px-16 lg:px-24"
-          >
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full bg-transparent border-b-2 border-[#00A8CD] focus:outline-none p-2"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full bg-transparent border-b-2 border-[#00A8CD] focus:outline-none p-2"
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              className="w-full bg-transparent border-b-2 border-[#00A8CD] focus:outline-none p-2"
-            />
-            <input
-              type="text"
-              placeholder="Phone Number"
-              className="w-full bg-transparent border-b-2 border-[#00A8CD] focus:outline-none p-2"
-            />
-            <textarea
-              placeholder="Message"
-              className="md:col-span-2 w-full bg-transparent border border-[#00A8CD] rounded-sm p-2 focus:outline-none h-[8em] text-start resize-none"
-            />
-          </form>
-        </div>
-        <button className="bg-primary px-8 py-2 rounded-sm hover:scale-105 transition duration-300 mb-2">
-          Send
-        </button>
+        <FormContact />
       </div>
 
       <div className="w-full px-10 md:px-40 mb-[3em] md:mb-[5em] lg:mb-[8em]">
@@ -268,7 +225,7 @@ const HomePage = () => {
               alt="showall"
               className="w-6 h-6 sm:w-6 sm:h-26 md:w-7 md:h-7 object-contain"
             />
-            <p className="text-[14px]">sabillyamri1@gmail.com</p>
+            <p className="text-[14px]">amrsabill@gmail.com</p>
           </button>
         </div>
       </div>
