@@ -7,6 +7,7 @@ import Js from "@/public/Images/Js.svg";
 import Css from "@/public/Images/Css.svg";
 import Figma from "@/public/Images/Figma.svg";
 import Nodejs from "@/public/Images/Nodejs.svg";
+import Tailwind from "@/public/Images/Tailwind.svg"
 
 export const Skill = [
   {
@@ -28,6 +29,10 @@ export const Skill = [
   {
     id: 5,
     nameskill: Nodejs,
+  },
+  {
+    id: 6,
+    nameskill: Tailwind,
   },
 ];
 
