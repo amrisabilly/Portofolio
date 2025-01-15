@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import { motion } from "framer-motion";
 // Profile
 import Profile1 from "@/public/Images/Profile1.svg";
 import Profile2 from "@/public/Images/Profile2.svg";
@@ -12,7 +11,6 @@ import { Project, Skill } from "../components/Asset/assets";
 
 //Icons
 import Download from "@/public/Images/Download.svg";
-import GarisHorizontal from "@/public/Images/GarisHorizontal.svg";
 import ShowAll from "@/public/Images/ShowAll.svg";
 import Email from "@/public/Images/Email.svg";
 //Sosmed
@@ -180,12 +178,14 @@ const HomePage = () => {
           sudah saya pelajari dan gunakan selama proses pembelajaran.
         </p>
         <div className="bg-gradient-to-r from-transparent via-[#525151]/10 to-[#525151]/20 w-full max-w-[500px] md:max-w-[1200px] h-auto md:h-[130px] lg:h-[175px] flex flex-wrap items-center justify-evenly p-4">
-          {Skill.map((item) => (
-            <Image
-              src={item.nameskill}
-              alt="showall"
-              className="w-10 h-10 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
-            />
+          {Skill.map((objek) => (
+            <div key={objek.id}>
+              <Image
+                src={objek.nameskill}
+                alt="showall"
+                className="w-10 h-10 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
