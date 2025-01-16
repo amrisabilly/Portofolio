@@ -28,7 +28,7 @@ const HomePage = () => {
       <div className="flex flex-col md:flex-row justify-between mb-[3em]" id="">
         <div className="pt-28 md:pt-40 lg:pt-48 w-full md:w-[35em] text-center md:text-left px-0 md:px-5">
           <h1 className="text-[40px] font-medium mb-1">
-            HI I’m
+            HI Im
             <span className="block sm:hidden">Amri Sabilly</span>
             <span className="hidden sm:inline"> Amri Sabilly</span>
           </h1>
