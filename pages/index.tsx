@@ -214,7 +214,7 @@ const HomePage = () => {
       </div>
 
       <div className="flex flex-col">
-        <h1 className="text-[50px] md:text-[63px] font-normal">Let's</h1>
+        <h1 className="text-[50px] md:text-[63px] font-normal">Lets</h1>
         <div className="flex flex-wrap justify-between items-center mb-24">
           <h1 className="text-primary text-[50px] md:text[63px] font-normal">
             Work <span>Together</span> <span className="text-white">-</span>
