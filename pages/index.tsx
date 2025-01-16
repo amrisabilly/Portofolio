@@ -199,7 +199,7 @@ const HomePage = () => {
 
       <div className="flex flex-col items-center mb-[3em] md:mb-[5em] lg:mb-[8em]">
         <h3 className="font-medium text-[24px] mb-[1.5em]">
-          My<span className="text-primary"> Contact</span>
+          My<span className="text-primary"> Contact my</span>
         </h3>
         <p className="w-[17em] sm:w-[28em] text-center mb-[3em] md:mb-20">
           Punya ide project untuk dikerjakan bersama-sama? ayoo hubungi saya di
