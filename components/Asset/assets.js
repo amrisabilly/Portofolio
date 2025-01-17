@@ -1,6 +1,12 @@
 import Project1 from "@/public/Images/Project1.svg";
 import Project2 from "@/public/Images/Project2.svg";
 import Project3 from "@/public/Images/Project3.svg";
+import Project4 from "@/public/Images/Project4.svg";
+import Project5 from "@/public/Images/Project5.svg";
+import Project6 from "@/public/Images/Project6.svg";
+import Project7 from "@/public/Images/Project7.svg";
+import Project8 from "@/public/Images/Project8.svg";
+
 
 import Html from "@/public/Images/Html.svg";
 import Js from "@/public/Images/Js.svg";
@@ -42,18 +48,64 @@ export const Project = [
     nameproject: Project1,
     jenis: "web",
     describe: "Website Himasisfo",
+    penjelasan: "Website Himpunan Mahasiswa Sistem Informasi, web ini menggunakan framework Laravel & Inertia",
+    url: "https://himasisfoupnvy.com/",
   },
   {
     id: 2,
     nameproject: Project2,
     jenis: "web",
-    describe: "Website Himasisfo",
+    describe: "Website Portofolio",
+    penjelasan: "Web ini dibangun menggunakan framework Next.js, untuk keperluan pribadi",
+    url: "https://www.amrsabilly.my.id/",
   },
   {
     id: 3,
     nameproject: Project3,
     jenis: "web",
-    describe: "Website Himasisfo",
+    describe: "Website Informasi Kebakaran",
+    penjelasan: "Ini adalah website sistem informasi manajemen bencana kebakaran",
+    url: "https://www.amrsabilly.my.id/",
+  },
+  {
+    id: 4,
+    nameproject: Project4,
+    jenis: "web",
+    describe: "Website Portofolio",
+    penjelasan: "Web ini dibangun menggunakan framework Next.js, untuk keperluan dokumentasi",
+    url: "https://www.amrsabilly.my.id/",
+  },
+  {
+    id: 5,
+    nameproject: Project5,
+    jenis: "web",
+    describe: "Website Persewaan",
+    penjelasan: "Ini adalah web persewaan terdapat panel admin juga untuk memanatu dan mengedit barang yang akan disewakan",
+    url: "https://www.amrsabilly.my.id/",
+  },
+  {
+    id: 6,
+    nameproject: Project6,
+    jenis: "web",
+    describe: "Website Informasi manajemen bencana angin topan",
+    penjelasan: "Website ini menyediakan fitur yang cukup banyak dibuat menggunakan Framework Next.js dan terdapat panel admin untuk mengedit",
+    url: "https://www.amrsabilly.my.id/",
+  },
+  {
+    id: 7,
+    nameproject: Project7,
+    jenis: "web",
+    describe: "Website #Pandawara",
+    penjelasan: "Website ini dibuat untuk informasi kegiatan bersih-bersih lingkungan, terdapat panel admin untuk mengedit",
+    url: "https://www.amrsabilly.my.id/",
+  },
+  {
+    id: 8,
+    nameproject: Project8,
+    jenis: "web",
+    describe: "Website Input data mahasiswa",
+    penjelasan: "Website ini dibuat untuk input data mahasiswa",
+    url: "https://www.amrsabilly.my.id/",
   },
 ];
 

@@ -10,13 +10,13 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
 
   const router = useRouter();
 
-  // Toggle Menu untuk mobile
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Mengubah activeSection berdasarkan hash dari URL
   useEffect(() => {
     const currentHash = window.location.hash;
     if (currentHash) {
@@ -24,7 +24,6 @@ const Navbar = () => {
     }
   }, [router.pathname]);
 
-  // Intersection Observer untuk mendeteksi elemen yang terlihat
   useEffect(() => {
     const sections = NavItem.map((item) => document.querySelector(item.href));
     const observer = new IntersectionObserver((entries) => {
@@ -44,10 +43,28 @@ const Navbar = () => {
         if (section) observer.unobserve(section);
       });
     };
-  }, []); 
+  }, []);
 
-  // Fungsi untuk memeriksa apakah link aktif
   const isActive = (href: string) => activeSection === href;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isOpen) { 
+        if (window.scrollY > prevScrollY) {
+          setShowNavbar(false);
+        } else {
+          setShowNavbar(true);
+        }
+      }
+      setPrevScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollY, isOpen]);
 
   return (
     <motion.div
@@ -57,7 +74,11 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       key={router.pathname}
     >
-      <div className="bg-black px-10 md:px-14 lg:px-20 py-5 shadow-md fixed top-0 left-0 w-full z-50">
+      <div
+        className={`bg-black px-10 md:px-14 lg:px-20 py-5 shadow-md fixed top-0 left-0 w-full z-50 transition-transform ${
+          showNavbar || isOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <div className="flex items-center justify-between">
           <Link href="/" className="font-semibold text-[24px] text-white">
             A.S.
@@ -89,6 +110,11 @@ const Navbar = () => {
 
         {isOpen && (
           <div className="absolute top-0 right-0 bg-black w-[200px] py-4 px-6 shadow-lg md:hidden">
+            <div className="flex justify-between items-center mb-4">
+              <button onClick={toggleMenu}>
+                <Image src={ArrowClose} alt="Close" className="w-4" />
+              </button>
+            </div>
             <ul className="flex flex-col gap-4">
               {NavItem.map((item) => (
                 <li key={item.id}>
