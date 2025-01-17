@@ -20,6 +20,7 @@ import Twitter from "@/public/Images/Twitter.svg";
 import GitHub from "@/public/Images/GitHub.svg";
 
 const HomePage = () => {
+
   return (
     <div className="font-primary text-white bg-black px-10 md:px-14 lg:px-20">
       <Navbar />
@@ -95,13 +96,13 @@ const HomePage = () => {
       </div>
 
       <div
-        id="certification"
+        
         className="w-full px-10 md:px-40 mb-[3em] md:mb-[5em] lg:mb-[8em]"
       >
         <hr className="h-[1px] bg-gradient-to-r from-[#00a7cdac] to-[#003e4c] border-0" />
       </div>
 
-      <div className="flex flex-col items-center mb-[3em] md:mb-[5em] lg:mb-[8em]">
+      <div className="flex flex-col items-center mb-[3em] md:mb-[5em] lg:mb-[8em]" id="certification">
         <h3 className="font-medium text-[24px] mb-[1.5em] md:mb-[2em] lg:mb-[3em]">
           Ceritfi<span className="text-primary">cation</span>
         </h3>
@@ -112,7 +113,7 @@ const HomePage = () => {
       </div>
 
       <div
-        id="project"
+        
         className="w-full px-10 md:px-40 mb-[3em] md:mb-[5em] lg:mb-[8em]"
       >
         <hr className="h-[1px] bg-gradient-to-r from-[#00a7cdac] to-[#003e4c] border-0" />
@@ -144,7 +145,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-10 justify-center mb-16">
+        <div className="flex flex-wrap gap-10 justify-center mb-16" id="project">
           {Project.map((item) => (
             <div
               className="flex flex-col gap-1 text-[13px] font-light"
@@ -163,13 +164,13 @@ const HomePage = () => {
       </div>
 
       <div
-        id="my-skill"
+        
         className="w-full px-10 md:px-40 mb-[3em] md:mb-[5em] lg:mb-[8em]"
       >
         <hr className="h-[1px] bg-gradient-to-r from-[#00a7cdac] to-[#003e4c] border-0" />
       </div>
 
-      <div className="flex flex-col items-center mb-[3em] md:mb-[5em] lg:mb-[8em]">
+      <div className="flex flex-col items-center mb-[3em] md:mb-[5em] lg:mb-[8em]" id="my-skill">
         <h3 className="font-medium text-[24px] mb-[1.5em]">
           My<span className="text-primary"> Skill</span>
         </h3>
@@ -191,7 +192,7 @@ const HomePage = () => {
       </div>
 
       <div
-        id="contact"
+        
         className="w-full px-10 md:px-40 mb-[3em] md:mb-[5em] lg:mb-[8em]"
       >
         <hr className="h-[1px] bg-gradient-to-r from-[#00a7cdac] to-[#003e4c] border-0" />
@@ -213,7 +214,7 @@ const HomePage = () => {
         <hr className="h-[1px] bg-gradient-to-r from-[#00a7cdac] to-[#003e4c] border-0" />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col" id="contact">
         <h1 className="text-[50px] md:text-[63px] font-normal">Lets</h1>
         <div className="flex flex-wrap justify-between items-center mb-24">
           <h1 className="text-primary text-[50px] md:text[63px] font-normal">
