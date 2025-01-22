@@ -355,7 +355,7 @@ const HomePage = () => {
           data-aos="fade-up"
         >
           Punya ide project untuk dikerjakan bersama-sama? ayoo hubungi saya di
-          bawah ini!
+          bawah ini.
         </p>
 
         <FormContact />
