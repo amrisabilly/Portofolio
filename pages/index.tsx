@@ -44,13 +44,13 @@ const HomePage = () => {
             Web & Mobile Developer
           </h3>
           <p className="text-[14px] font-medium mb-5" data-aos="fade-up">
-            Selamat datang di portofolio web saya! Saya seorang Web & Mobile
+            Selamat datang di portofolio web saya! Saya seorang Web
             Developer dengan hasrat untuk menciptakan pengalaman web yang
             menarik dan responsif. Dengan keahlian dalam pengembangan front-end
             dan back-end, saya fokus pada penggunaan teknologi modern seperti
             React, Node.js, dan Tailwind CSS untuk menghadirkan solusi inovatif.
-            Jelajahi berbagai proyek saya di sini, yang mencakup aplikasi
-            e-commerce, website portofolio, hingga aplikasi mobile hybrid yang
+            Jelajahi berbagai proyek saya di sini, yang mencakup website
+            sistem infromasi, website portofolio, hingga website hybrid yang
             dirancang untuk mempermudah aktivitas sehari-hari.
           </p>
           <div
@@ -138,8 +138,8 @@ const HomePage = () => {
           <p className="text-[14px] font-medium" data-aos="fade-up">
             Saya mahasiswa Sistem Informasi yang antusias dalam mengembangkan
             solusi teknologi untuk mendukung efisiensi dan inovasi.
-            Berpengalaman dalam pengembangan web dengan JavaScript, React, dan
-            MySQL, pengembangan mobile menggunakan Flutter, serta desain UI/UX
+            Berpengalaman dalam pengembangan web dengan JavaScript, React JS, dan
+            MySQL, serta desain UI/UX
             yang berfokus pada pengalaman pengguna. Saya juga memiliki minat
             pada analisis data dan pembuatan sistem pendukung keputusan untuk
             membantu pengambilan keputusan strategis.
@@ -201,7 +201,7 @@ const HomePage = () => {
             <p className="text-[13px]">#Tailwind</p>
           </div>
           <div className="bg-primary px-2 py-1 rounded-sm">
-            <p className="text-[13px]">#Flutter</p>
+            <p className="text-[13px]">#Mysql</p>
           </div>
           <div className="bg-primary px-2 py-1 rounded-sm">
             <p className="text-[13px]">#React.js</p>
