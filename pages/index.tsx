@@ -41,7 +41,7 @@ const HomePage = () => {
             className="text-[18px] md:text-[24px] font-semibold text-primary mb-3"
             data-aos="fade-up"
           >
-            Web & Mobile Developer
+            Web Developer
           </h3>
           <p className="text-[14px] font-medium mb-5" data-aos="fade-up">
             Selamat datang di portofolio web saya! Saya seorang Web
