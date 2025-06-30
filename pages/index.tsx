@@ -1773,7 +1773,7 @@ const HomePage = () => {
                   }}
                   viewport={{ once: true }}
                 >
-                  Let's{" "}
+                  Let&apos;s{" "}
                   <span
                     style={{
                       background: "#00A8CD",
