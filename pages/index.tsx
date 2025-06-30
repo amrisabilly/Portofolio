@@ -210,7 +210,7 @@ const HomePage = () => {
                   style={{ color: "#00A8CD" }}
                   className="text-lg font-medium"
                 >
-                  Hello, I'm
+                  Hello, Im
                 </span>
               </motion.div>
 
