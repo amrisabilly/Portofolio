@@ -249,10 +249,6 @@ const HomePage = () => {
     );
   };
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
   const limitedProjects = showAll ? Project : Project.slice(0, 3);
 
   return (
@@ -2019,7 +2015,7 @@ const HomePage = () => {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                               transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
                 Siap Berkolaborasi?
