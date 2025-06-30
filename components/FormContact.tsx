@@ -23,7 +23,7 @@ const FormContact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = () => {
     setIsSubmitting(true);
     // After form submission is complete
     setTimeout(() => {

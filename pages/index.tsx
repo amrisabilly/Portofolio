@@ -18,6 +18,7 @@ import Instagram from "@/public/Images/Instagram.svg";
 import LinkInd from "@/public/Images/LinkInd.svg";
 import Twitter from "@/public/Images/Twitter.svg";
 import GitHub from "@/public/Images/GitHub.svg";
+import type { StaticImageData } from "next/image";
 
 import { motion } from "framer-motion";
 
@@ -136,7 +137,7 @@ const HomePage = () => {
     title: string;
     issuer: string;
     date: string;
-    image: any;
+    image: StaticImageData;
     description: string;
   };
 
