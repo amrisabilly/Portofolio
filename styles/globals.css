@@ -1,15 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
-  }
-  
+  scroll-behavior: smooth;
+}
+
+/* Define smooth scrolling behavior */
+:root {
+  --primary-color: #00a8cd;
+  --bg-color: #14181a;
+  --transition-standard: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #14181a;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00a8cd;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0088aa;
+}
+
 @layer components {
-    .nav_link {
-        @apply relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 text-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right
-    }
+  .nav_link {
+    @apply relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right;
+  }
+
+  .nav_link::after {
+    background-color: #00a8cd;
+  }
+
+  /* Custom utility classes for our new color scheme */
+  .gradient-primary {
+    background: #00a8cd;
+  }
+
+  .gradient-primary-hover:hover {
+    background: #0088aa;
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, #00a8cd, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-card {
+    background-color: #14181a80;
+    backdrop-filter: blur(16px);
+    border: 1px solid #00a8cd30;
+    border-radius: 12px;
+  }
+
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #00a8cd20;
+  }
+
+  /* Add missing animation classes */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  .animate-spin-slow-reverse {
+    animation: spin 15s linear infinite reverse;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Define keyframes if not already defined */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
