@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { NavItem } from "./Asset/assets";
+import { NavItem } from "./Asset/assets.js";
 import ArrowOpen from "../public/Images/ArrowOpen.svg";
 import ArrowClose from "../public/Images/ArrowClose.svg";
 import Link from "next/link";
@@ -28,12 +28,23 @@ const Navbar = () => {
 
   // Intersection Observer for sections
   useEffect(() => {
-    const sections = NavItem.map((item) => document.querySelector(item.href));
+    const sections = NavItem.map((item) => {
+      // Handle home link
+      if (item.href === "#") {
+        return document.querySelector("body");
+      }
+      return document.querySelector(item.href);
+    });
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`);
+            if (entry.target.tagName === "BODY") {
+              setActiveSection("#");
+            } else {
+              setActiveSection(`#${entry.target.id}`);
+            }
           }
         });
       },
@@ -205,7 +216,7 @@ const Navbar = () => {
                   e.currentTarget.style.backgroundColor = "#00A8CD";
                 }}
               >
-                Get in touch
+                Hubungi Saya
               </Link>
             </motion.div>
 
@@ -294,7 +305,7 @@ const Navbar = () => {
                       className="block mt-2 text-center px-6 py-2 rounded-lg text-white font-medium shadow-lg"
                       style={{ backgroundColor: "#00A8CD" }}
                     >
-                      Contact Me
+                      Hubungi Saya
                     </Link>
                   </motion.li>
                 </ul>

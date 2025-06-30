@@ -5,6 +5,14 @@ import Navbar from "@/components/Navbar";
 import Profile1 from "@/public/Images/Profile1.svg";
 import Profile2 from "@/public/Images/Profile2.svg";
 import Certification from "@/public/Images/Certification.svg";
+import Certification1 from "@/public/sertif1.png";
+import Certification2 from "@/public/sertif2.png";
+import Certification3 from "@/public/sertif3.png";
+import Certification4 from "@/public/sertif4.png";
+import Certification5 from "@/public/sertif5.png";
+import Certification6 from "@/public/sertif6.png";
+import Certification7 from "@/public/sertif7.png";
+
 import FormContact from "@/components/FormContact";
 //Assets
 import { Project, Skill } from "../components/Asset/assets";
@@ -130,6 +138,7 @@ const AnimatedBackground = () => {
 
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Define the certification type
   type CertificationType = {
@@ -144,36 +153,105 @@ const HomePage = () => {
   const [selectedCertification, setSelectedCertification] =
     useState<CertificationType | null>(null);
 
-  // Sample certifications data - you can expand this
+  // Expanded certifications data with more certificates
   const certifications: CertificationType[] = [
     {
       id: 1,
-      title: "Web Development Certification",
-      issuer: "Tech Academy",
-      date: "2024",
-      image: Certification,
+      title:
+        "Sertifikasi penghargaan karyawan berprestasi (Employee of the Month)",
+      issuer: "PT Berbinar Insightful Indonesia",
+      date: "2025",
+      image: Certification6,
       description:
-        "Full-stack web development certification covering React, Node.js, and modern web technologies.",
+        "Sertifikasi penghargaan karyawan berprestasi (Employee of the Month) atas kontribusi dan kinerja luar biasa dalam pengembangan aplikasi web dan mobile di PT Berbinar Insightful Indonesia.",
     },
     {
       id: 2,
-      title: "UI/UX Design Certificate",
-      issuer: "Design Institute",
-      date: "2023",
-      image: Certification,
+      title: "Sertifikasi kontribusi pengembangan website HIMASISFO",
+      issuer: "HIMASISFO UPN Veteran Yogyakarta",
+      date: "2025",
+      image: Certification7,
       description:
-        "User interface and user experience design principles and best practices.",
+        "Sertifikasi apresiasi kontribusi pengembangan website HIMASISFO sebagai Wakil Ketua dan Staf Front-end Developer.",
     },
     {
       id: 3,
-      title: "Database Management",
-      issuer: "Data Academy",
-      date: "2023",
+      title: "Alibaba Cloud Academy",
+      issuer: "Aliababa Cloud Academy",
+      date: "2025",
       image: Certification,
       description:
-        "Advanced database design and management using MySQL and MongoDB.",
+        "Sertifikasi resmi Alibaba Cloud sebagai Certified Developer yang memvalidasi kemampuan dalam membangun aplikasi menggunakan layanan Alibaba Cloud.",
+    },
+    {
+      id: 4,
+      title: "Belajar Membuat Aplikasi Web Dengan React",
+      issuer: "Dicoding",
+      date: "2025",
+      image: Certification3,
+      description:
+        "Sertifikasi pengembangan aplikasi web menggunakan React, dengan fokus pada pembuatan UI yang deklaratif dan reusable melalui penggunaan functional component, stateful component, dan controlled component.",
+    },
+    {
+      id: 5,
+      title: "Belajar Dasar Pemrograman JavaScript",
+      issuer: "Dicoding",
+      date: "2025",
+      image: Certification4,
+      description:
+        "Sertifikasi pengembangan web back-end dengan Node.js yang mencakup dasar-dasar JavaScript, struktur data, Object-Oriented dan Functional Programming, modularisasi, serta manajemen proses asynchronous, divalidasi sesuai standar industri oleh AWS.",
+    },
+    {
+      id: 6,
+      title: "Belajar Dasar Pemrograman Web",
+      issuer: "Dicoding",
+      date: "2025",
+      image: Certification5,
+      description:
+        "Sertifikasi pengembangan web dasar yang mencakup pemahaman struktur HTML, styling dengan CSS, serta teknik layout responsif menggunakan Flexbox dan media query sebagai fondasi utama pembuatan website.",
+    },
+    {
+      id: 7,
+      title: "Belajar Membuat Front-End Web",
+      issuer: "Dicoding",
+      date: "2025",
+      image: Certification2,
+      description:
+        "Sertifikasi pengembangan front-end web yang berfokus pada pembuatan website interaktif melalui manipulasi DOM, penggunaan event, serta pengelolaan data dengan Web Storage sesuai standar industri.",
+    },
+    {
+      id: 8,
+      title: "Belajar Dasar AI",
+      issuer: "Dicoding",
+      date: "2025",
+      image: Certification1,
+      description:
+        "Sertifikasi dasar Artificial Intelligence (AI) yang mencakup konsep AI, pemanfaatan data, dasar-dasar Machine Learning, dan pengenalan Deep Learning.",
     },
   ];
+
+  // Auto slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % certifications.length);
+    }, 4000); // 4 seconds per slide
+
+    return () => clearInterval(interval);
+  }, [certifications.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % certifications.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + certifications.length) % certifications.length
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   const limitedProjects = showAll ? Project : Project.slice(0, 3);
 
@@ -210,7 +288,7 @@ const HomePage = () => {
                   style={{ color: "#00A8CD" }}
                   className="text-lg font-medium"
                 >
-                  Hello, Im
+                  Halo, Saya
                 </span>
               </motion.div>
 
@@ -282,7 +360,7 @@ const HomePage = () => {
                     e.currentTarget.style.backgroundColor = "#00A8CD";
                   }}
                 >
-                  <span className="relative z-10 text-white">Get In Touch</span>
+                  <span className="relative z-10 text-white">Hubungi Saya</span>
                 </button>
               </a>
 
@@ -373,7 +451,7 @@ const HomePage = () => {
                   priority
                 />
               </div>
-              <span className="font-medium">Download CV</span>
+              <span className="font-medium">Unduh CV</span>
             </motion.a>
           </motion.div>
 
@@ -549,7 +627,7 @@ const HomePage = () => {
                     color: "#00A8CD",
                   }}
                 >
-                  Discover My Story
+                  Temukan Kisah Saya
                 </motion.div>
 
                 <motion.h2
@@ -559,7 +637,7 @@ const HomePage = () => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  About{" "}
+                  Tentang{" "}
                   <span
                     style={{
                       background: "#00A8CD",
@@ -567,7 +645,7 @@ const HomePage = () => {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Me
+                    Saya
                   </span>
                 </motion.h2>
               </div>
@@ -622,6 +700,158 @@ const HomePage = () => {
           </div>
         </section>
 
+        {/* Work Experience Section */}
+        <section id="work-experience" className="py-28">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="inline-block px-4 py-1 rounded-full border text-sm font-medium mb-4"
+              style={{
+                backgroundColor: "#00A8CD20",
+                borderColor: "#00A8CD",
+                color: "#00A8CD",
+              }}
+            >
+              Pengalaman Kerja
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Perjalanan{" "}
+              <span className="relative">
+                <span
+                  style={{
+                    background: "#00A8CD",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Karir Saya
+                </span>
+                <motion.span
+                  className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
+                  style={{ backgroundColor: "#00A8CD" }}
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  viewport={{ once: true }}
+                />
+              </span>
+            </h2>
+            <p className="text-slate-200 text-lg max-w-2xl mx-auto">
+              Pengalaman profesional saya di bidang pengembangan web dan
+              organisasi.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Experience 1 */}
+            <motion.div
+              className="backdrop-blur-sm border rounded-xl p-8 shadow-lg flex flex-col"
+              style={{
+                backgroundColor: "#14181A60",
+                borderColor: "#00A8CD30",
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-2xl">💻</span>
+                <div>
+                  <h3
+                    className="text-xl font-bold"
+                    style={{ color: "#00A8CD" }}
+                  >
+                    Pengembang Frontend
+                  </h3>
+                  <p className="text-slate-300 text-sm">
+                    HIMASISO UPNYK &middot;{" "}
+                    <span className="text-slate-400">Organisasi Mahasiswa</span>
+                  </p>
+                </div>
+              </div>
+              <p className="text-slate-200 mb-4">
+                Berperan sebagai Pengembang Frontend di HIMASISO UPNYK,
+                mengembangkan dan memelihara website organisasi serta mendukung
+                berbagai acara digital.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/amri-sabilly-1a2a44319/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium"
+                style={{ color: "#00A8CD" }}
+              >
+                Lihat di LinkedIn
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L15 5.414V17a1 1 0 11-2 0V5.414l-1.293 1.293A1 1 0 1110.293 5.293l4-4z" />
+                </svg>
+              </a>
+            </motion.div>
+            {/* Experience 2 */}
+            <motion.div
+              className="backdrop-blur-sm border rounded-xl p-8 shadow-lg flex flex-col"
+              style={{
+                backgroundColor: "#14181A60",
+                borderColor: "#00A8CD30",
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-2xl">🛠️</span>
+                <div>
+                  <h3
+                    className="text-xl font-bold"
+                    style={{ color: "#00A8CD" }}
+                  >
+                    Staf Pengembang Backend
+                  </h3>
+                  <p className="text-slate-300 text-sm">
+                    PT Berbinar Insight Full &middot;{" "}
+                    <span className="text-slate-400">Perusahaan Teknologi</span>
+                  </p>
+                </div>
+              </div>
+              <p className="text-slate-200 mb-4">
+                Bertanggung jawab sebagai Staf Pengembang Backend di PT Berbinar
+                Insight Full, membangun dan mengelola API serta sistem backend
+                untuk kebutuhan bisnis.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/amri-sabilly-1a2a44319/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium"
+                style={{ color: "#00A8CD" }}
+              >
+                Lihat di LinkedIn
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L15 5.414V17a1 1 0 11-2 0V5.414l-1.293 1.293A1 1 0 1110.293 5.293l4-4z" />
+                </svg>
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Certifications Section */}
         <section id="certification" className="py-28">
           <motion.div
@@ -643,11 +873,11 @@ const HomePage = () => {
                 color: "#00A8CD",
               }}
             >
-              Professional Growth
+              Pertumbuhan Profesional
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              My{" "}
+              Sertifikat{" "}
               <span className="relative">
                 <span
                   style={{
@@ -656,7 +886,7 @@ const HomePage = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Certifications
+                  Saya
                 </span>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
@@ -669,108 +899,140 @@ const HomePage = () => {
               </span>
             </h2>
             <p className="text-slate-200 text-lg max-w-2xl mx-auto">
-              Professional certifications and achievements in web development
-              and technology.
+              Sertifikasi profesional dan pencapaian dalam pengembangan web dan
+              teknologi.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={cert.id}
-                className="backdrop-blur-sm border rounded-xl overflow-hidden transition-all duration-300 cursor-pointer group shadow-lg"
-                style={{
-                  backgroundColor: "#14181A60",
-                  borderColor: "#00A8CD30",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#00A8CD";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#00A8CD30";
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                onClick={() => setSelectedCertification(cert)}
-              >
-                <div className="relative overflow-hidden h-52">
-                  <Image
-                    src={cert.image}
-                    alt={cert.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div
-                    className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "linear-gradient(to top, #14181A, #14181A60, transparent)",
-                    }}
-                  ></div>
-
-                  <motion.div
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <span
-                      className="px-4 py-2 text-white rounded-lg font-medium shadow-lg"
-                      style={{ backgroundColor: "#00A8CD" }}
-                    >
-                      View Details
-                    </span>
-                  </motion.div>
-
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3
-                      className="text-xl font-semibold mb-1 text-white group-hover:text-white transition-colors duration-300"
-                      style={{ color: "#00A8CD" }}
-                    >
-                      {cert.title}
-                    </h3>
-                    <p className="text-slate-200">{cert.issuer}</p>
-                  </div>
-                </div>
-                <div
-                  className="p-4 border-t"
-                  style={{ borderColor: "#00A8CD30" }}
+          {/* Carousel Container */}
+          <div className="relative overflow-hidden">
+            {/* Main Carousel */}
+            <motion.div
+              className="flex transition-transform duration-700 ease-in-out"
+              style={{
+                transform: `translateX(-${
+                  currentSlide * (100 / Math.min(3, certifications.length))
+                }%)`,
+              }}
+              drag="x"
+              dragConstraints={{
+                left: -((certifications.length - 3) * (100 / 3)),
+                right: 0,
+              }}
+              onDragEnd={(event, info) => {
+                const threshold = 50;
+                if (info.offset.x > threshold) {
+                  prevSlide();
+                } else if (info.offset.x < -threshold) {
+                  nextSlide();
+                }
+              }}
+            >
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={cert.id}
+                  className="flex-shrink-0 px-4"
+                  style={{
+                    width: `${100 / Math.min(3, certifications.length)}%`,
+                    minWidth: "320px",
+                  }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <div className="flex items-center justify-between">
-                    <p
-                      className="text-sm font-medium"
-                      style={{ color: "#00A8CD" }}
-                    >
-                      {cert.date}
-                    </p>
-                    <div
-                      className="h-8 w-8 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#00A8CD30" }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        style={{ color: "#00A8CD" }}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                  <motion.div
+                    className="backdrop-blur-sm border rounded-xl overflow-hidden transition-all duration-300 cursor-pointer group shadow-lg h-full"
+                    style={{
+                      backgroundColor: "#14181A60",
+                      borderColor: "#00A8CD30",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#00A8CD";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#00A8CD30";
+                    }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    onClick={() => setSelectedCertification(cert)}
+                  >
+                    <div className="relative overflow-hidden h-52">
+                      <Image
+                        src={cert.image}
+                        alt={cert.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div
+                        className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity duration-300"
+                        style={{
+                          background:
+                            "linear-gradient(to top, #14181A, #14181A60, transparent)",
+                        }}
+                      ></div>
+
+                      <motion.div
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                        <span
+                          className="px-4 py-2 text-white rounded-lg font-medium shadow-lg"
+                          style={{ backgroundColor: "#00A8CD" }}
+                        >
+                          Lihat Detail
+                        </span>
+                      </motion.div>
+
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3
+                          className="text-lg font-semibold mb-1 text-white group-hover:text-white transition-colors duration-300"
+                          style={{ color: "#00A8CD" }}
+                        >
+                          {cert.title}
+                        </h3>
+                        <p className="text-slate-200 text-sm">{cert.issuer}</p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                    <div
+                      className="p-4 border-t"
+                      style={{ borderColor: "#00A8CD30" }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <p
+                          className="text-sm font-medium"
+                          style={{ color: "#00A8CD" }}
+                        >
+                          {cert.date}
+                        </p>
+                        <div
+                          className="h-8 w-8 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: "#00A8CD30" }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            style={{ color: "#00A8CD" }}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Certification Modal */}
+          {/* Certification Modal - tetap sama */}
           {selectedCertification && (
             <motion.div
               className="fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4"
@@ -894,7 +1156,7 @@ const HomePage = () => {
                       </svg>
                     </div>
                     <span className="text-slate-200">
-                      Issued: {selectedCertification.date}
+                      Dikeluarkan: {selectedCertification.date}
                     </span>
                   </div>
 
@@ -909,7 +1171,7 @@ const HomePage = () => {
                       className="text-lg font-semibold mb-2"
                       style={{ color: "#00A8CD" }}
                     >
-                      Description
+                      Deskripsi
                     </h4>
                     <p className="text-slate-200 leading-relaxed">
                       {selectedCertification.description}
@@ -944,7 +1206,7 @@ const HomePage = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <span className="text-white">Download Certificate</span>
+                      <span className="text-white">Unduh Sertifikat</span>
                     </button>
                   </div>
                 </div>
@@ -974,11 +1236,11 @@ const HomePage = () => {
                 color: "#00A8CD",
               }}
             >
-              My Portfolio
+              Portofolio Saya
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Featured{" "}
+              Proyek{" "}
               <span className="relative">
                 <span
                   style={{
@@ -987,7 +1249,7 @@ const HomePage = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Projects
+                  Unggulan
                 </span>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
@@ -1000,7 +1262,7 @@ const HomePage = () => {
               </span>
             </h2>
             <p className="text-slate-200 text-lg max-w-2xl mx-auto mb-8">
-              Explore my latest web development projects and digital solutions.
+              Jelajahi proyek pengembangan web terbaru dan solusi digital saya.
             </p>
 
             <div className="flex flex-wrap gap-3 justify-center mb-12">
@@ -1101,7 +1363,7 @@ const HomePage = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      View Project
+                      Lihat Proyek
                     </motion.a>
                   </div>
                 </div>
@@ -1150,7 +1412,7 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <span className="relative z-10 font-medium text-white">
-                {showAll ? "Show Less" : "Show All Projects"}
+                {showAll ? "Tampilkan Lebih Sedikit" : "Tampilkan Semua Proyek"}
               </span>
               <span className="relative z-10 p-1 bg-white/20 rounded-full">
                 <Image
@@ -1187,11 +1449,11 @@ const HomePage = () => {
                 color: "#00A8CD",
               }}
             >
-              Technologies
+              Teknologi
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              My{" "}
+              Keahlian{" "}
               <span className="relative">
                 <span
                   style={{
@@ -1200,7 +1462,7 @@ const HomePage = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Skills
+                  Saya
                 </span>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
@@ -1213,7 +1475,8 @@ const HomePage = () => {
               </span>
             </h2>
             <p className="text-slate-200 text-lg max-w-2xl mx-auto">
-              Technologies and tools I use to create amazing web experiences.
+              Teknologi dan alat yang saya gunakan untuk menciptakan pengalaman
+              web yang luar biasa.
             </p>
           </motion.div>
 
@@ -1355,11 +1618,11 @@ const HomePage = () => {
                 color: "#00A8CD",
               }}
             >
-              Website Packages
+              Paket Website
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Professional{" "}
+              Layanan{" "}
               <span className="relative">
                 <span
                   style={{
@@ -1368,7 +1631,7 @@ const HomePage = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Services
+                  Profesional
                 </span>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
@@ -1390,105 +1653,105 @@ const HomePage = () => {
             {[
               {
                 id: 1,
-                title: "Portfolio Website",
+                title: "Website Portofolio",
                 description:
                   "Website portofolio profesional untuk menampilkan karya dan kemampuan Anda.",
-                price: "Rp 500,000",
+                price: "Rp 500.000",
                 features: [
-                  "Design Responsif",
+                  "Desain Responsif",
                   "5 Halaman Utama",
-                  "Contact Form",
-                  "SEO Optimized",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
+                  "Formulir Kontak",
+                  "Optimasi SEO",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
                 ],
                 popular: false,
               },
               {
                 id: 2,
-                title: "Business Website",
+                title: "Website Bisnis",
                 description:
                   "Website bisnis lengkap untuk meningkatkan kredibilitas dan penjualan online.",
-                price: "Rp 1,200,000",
+                price: "Rp 1.200.000",
                 features: [
-                  "Design Custom",
+                  "Desain Kustom",
                   "10+ Halaman",
-                  "Admin Panel",
-                  "WhatsApp Integration",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
+                  "Panel Admin",
+                  "Integrasi WhatsApp",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
                   "Google Analytics",
                 ],
                 popular: true,
               },
               {
                 id: 3,
-                title: "E-Commerce Website",
+                title: "Website E-Commerce",
                 description:
                   "Toko online lengkap dengan sistem pembayaran dan manajemen produk.",
-                price: "Rp 2,500,000",
+                price: "Rp 2.500.000",
                 features: [
-                  "Shopping Cart",
-                  "Payment Gateway",
-                  "Product Management",
-                  "Order Tracking",
-                  "Multi User Admin",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
-                  "SSL Certificate",
+                  "Keranjang Belanja",
+                  "Gateway Pembayaran",
+                  "Manajemen Produk",
+                  "Pelacakan Pesanan",
+                  "Multi Admin",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
+                  "Sertifikat SSL",
                 ],
                 popular: false,
               },
               {
                 id: 4,
-                title: "Rental/Booking System",
+                title: "Sistem Rental/Booking",
                 description:
                   "Website untuk sistem rental mobil, villa, atau booking layanan lainnya.",
-                price: "Rp 3,000,000",
+                price: "Rp 3.000.000",
                 features: [
-                  "Booking Calendar",
-                  "Payment Integration",
-                  "Customer Management",
-                  "Inventory Tracking",
-                  "Notification System",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
-                  "24/7 Support",
+                  "Kalender Booking",
+                  "Integrasi Pembayaran",
+                  "Manajemen Pelanggan",
+                  "Pelacakan Inventori",
+                  "Sistem Notifikasi",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
+                  "Dukungan 24/7",
                 ],
                 popular: false,
               },
               {
                 id: 5,
-                title: "Company Profile",
+                title: "Profil Perusahaan",
                 description:
-                  "Website company profile yang elegan untuk meningkatkan brand awareness.",
-                price: "Rp 800,000",
+                  "Website profil perusahaan yang elegan untuk meningkatkan brand awareness.",
+                price: "Rp 800.000",
                 features: [
-                  "Professional Design",
-                  "About Company",
-                  "Services Page",
-                  "Team Section",
-                  "Contact Integration",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
+                  "Desain Profesional",
+                  "Tentang Perusahaan",
+                  "Halaman Layanan",
+                  "Bagian Tim",
+                  "Integrasi Kontak",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
                 ],
                 popular: false,
               },
               {
                 id: 6,
-                title: "Custom Website",
+                title: "Website Kustom",
                 description:
-                  "Website custom sesuai kebutuhan spesifik bisnis Anda.",
-                price: "Mulai Rp 1,500,000",
+                  "Website kustom sesuai kebutuhan spesifik bisnis Anda.",
+                price: "Mulai Rp 1.500.000",
                 features: [
-                  "Fully Customizable",
-                  "Unlimited Pages",
-                  "Advanced Features",
-                  "Database Integration",
-                  "API Integration",
-                  "Free Hosting 1 Tahun",
-                  "Free Domain .com",
-                  "Priority Support",
+                  "Dapat Dikustomisasi Penuh",
+                  "Halaman Tak Terbatas",
+                  "Fitur Lanjutan",
+                  "Integrasi Database",
+                  "Integrasi API",
+                  "Hosting Gratis 1 Tahun",
+                  "Domain .com Gratis",
+                  "Dukungan Prioritas",
                 ],
                 popular: false,
               },
@@ -1522,7 +1785,7 @@ const HomePage = () => {
                       className="px-3 py-1 text-white text-xs font-medium rounded-full shadow-lg"
                       style={{ backgroundColor: "#00A8CD" }}
                     >
-                      Most Popular
+                      Paling Populer
                     </span>
                   </div>
                 )}
@@ -1540,7 +1803,7 @@ const HomePage = () => {
                   <div className="text-3xl font-bold text-white mb-1">
                     {service.price}
                   </div>
-                  <p className="text-slate-400 text-sm">One-time payment</p>
+                  <p className="text-slate-400 text-sm">Pembayaran sekali</p>
                 </div>
 
                 <ul className="space-y-3 mb-6">
@@ -1569,7 +1832,7 @@ const HomePage = () => {
                 <button
                   onClick={() => {
                     const message = `Halo, saya tertarik dengan paket *${service.title}* seharga ${service.price}. Bisa tolong dijelaskan lebih detail?`;
-                    const phoneNumber = "081227186535";
+                    const phoneNumber = "6281227186535";
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
                       message
                     )}`;
@@ -1620,18 +1883,18 @@ const HomePage = () => {
                   },
                   {
                     icon: "🛠️",
-                    title: "Maintenance",
-                    description: "Update dan maintenance website bulanan",
+                    title: "Perawatan",
+                    description: "Update dan perawatan website bulanan",
                   },
                   {
                     icon: "📈",
-                    title: "SEO Optimization",
-                    description: "Optimasi website untuk search engine",
+                    title: "Optimasi SEO",
+                    description: "Optimasi website untuk mesin pencari",
                   },
                   {
                     icon: "📱",
-                    title: "Mobile App",
-                    description: "Konversi website menjadi mobile app",
+                    title: "Aplikasi Mobile",
+                    description: "Konversi website menjadi aplikasi mobile",
                   },
                 ].map((addon, index) => (
                   <motion.div
@@ -1659,7 +1922,7 @@ const HomePage = () => {
                 onClick={() => {
                   const message =
                     "Halo, saya ingin konsultasi tentang layanan tambahan untuk website. Bisa tolong dijelaskan lebih detail?";
-                  const phoneNumber = "081227186535";
+                  const phoneNumber = "6281227186535";
                   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
                     message
                   )}`;
@@ -1693,7 +1956,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Get In{" "}
+              Mari{" "}
               <span
                 style={{
                   background: "#00A8CD",
@@ -1701,12 +1964,12 @@ const HomePage = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Touch
+                Terhubung
               </span>
             </h2>
             <p className="text-slate-200 text-lg max-w-2xl mx-auto">
-              Punya ide project untuk dikerjakan bersama-sama? Mari kita
-              diskusikan.
+              Punya ide proyek untuk dikerjakan bersama-sama? Mari kita
+              diskusikan dan wujudkan visi Anda.
             </p>
           </motion.div>
 
@@ -1759,7 +2022,7 @@ const HomePage = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                Ready To Collaborate?
+                Siap Berkolaborasi?
               </motion.div>
 
               <div className="overflow-hidden mb-8">
@@ -1773,7 +2036,7 @@ const HomePage = () => {
                   }}
                   viewport={{ once: true }}
                 >
-                  Lets
+                  Mari{" "}
                   <span
                     style={{
                       background: "#00A8CD",
@@ -1781,7 +2044,7 @@ const HomePage = () => {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Work
+                    Bekerja
                   </span>
                   <br />
                   <span
@@ -1791,7 +2054,7 @@ const HomePage = () => {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Together
+                    Bersama
                   </span>
                 </motion.h2>
               </div>
@@ -1836,7 +2099,7 @@ const HomePage = () => {
                 </motion.a>
 
                 <motion.a
-                  href="https://wa.me/+6285785232430"
+                  href="https://wa.me/6281227186535"
                   target="_blank"
                   className="inline-flex items-center gap-4 backdrop-blur-md border px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg group"
                   style={{
@@ -1859,8 +2122,9 @@ const HomePage = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 h-5 text-white"
-                      fill="currentColor"
+                      fill="none"
                       viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
                     </svg>

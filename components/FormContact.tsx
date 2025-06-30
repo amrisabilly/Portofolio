@@ -61,7 +61,7 @@ const FormContact = () => {
             name="name"
             value={formState.name}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="Nama Depan"
             className="w-full bg-transparent border-b-2 focus:outline-none p-3 transition-all duration-300"
             style={{
               borderColor: "#00A8CD70",
@@ -87,7 +87,7 @@ const FormContact = () => {
             name="last_name"
             value={formState.last_name}
             onChange={handleChange}
-            placeholder="Last Name"
+            placeholder="Nama Belakang"
             className="w-full bg-transparent border-b-2 focus:outline-none p-3 transition-all duration-300"
             style={{
               borderColor: "#00A8CD70",
@@ -113,7 +113,7 @@ const FormContact = () => {
             name="email"
             value={formState.email}
             onChange={handleChange}
-            placeholder="Email"
+            placeholder="Alamat Email"
             className="w-full bg-transparent border-b-2 focus:outline-none p-3 transition-all duration-300"
             style={{
               borderColor: "#00A8CD70",
@@ -139,7 +139,7 @@ const FormContact = () => {
             name="phone"
             value={formState.phone}
             onChange={handleChange}
-            placeholder="Phone Number"
+            placeholder="Nomor Telepon/WhatsApp"
             className="w-full bg-transparent border-b-2 focus:outline-none p-3 transition-all duration-300"
             style={{
               borderColor: "#00A8CD70",
@@ -163,7 +163,7 @@ const FormContact = () => {
             name="message"
             value={formState.message}
             onChange={handleChange}
-            placeholder="Message"
+            placeholder="Ceritakan tentang proyek atau ide Anda..."
             className="w-full bg-transparent border-2 rounded-lg p-4 focus:outline-none h-32 text-start resize-none transition-all duration-300"
             style={{
               borderColor: "#00A8CD50",
@@ -203,7 +203,7 @@ const FormContact = () => {
                 isSubmitting ? "opacity-0" : "opacity-100"
               }`}
             >
-              Send Message
+              Kirim Pesan
             </span>
 
             {isSubmitting && (
@@ -220,7 +220,7 @@ const FormContact = () => {
               className="mt-3 text-center"
               style={{ color: "#00A8CD" }}
             >
-              Message sent successfully!
+              Pesan berhasil dikirim! Saya akan segera merespons.
             </motion.div>
           )}
         </motion.div>

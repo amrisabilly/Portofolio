@@ -7,13 +7,12 @@ import Project6 from "@/public/Images/Project6.svg";
 import Project7 from "@/public/Images/Project7.svg";
 import Project8 from "@/public/Images/Project8.svg";
 
-
 import Html from "@/public/Images/Html.svg";
 import Js from "@/public/Images/Js.svg";
 import Css from "@/public/Images/Css.svg";
 import Figma from "@/public/Images/Figma.svg";
 import Nodejs from "@/public/Images/Nodejs.svg";
-import Tailwind from "@/public/Images/Tailwind.svg"
+import Tailwind from "@/public/Images/Tailwind.svg";
 
 export const Skill = [
   {
@@ -48,7 +47,8 @@ export const Project = [
     nameproject: Project1,
     jenis: "web",
     describe: "Website Himasisfo",
-    penjelasan: "Website Himpunan Mahasiswa Sistem Informasi, web ini menggunakan framework Laravel & Inertia",
+    penjelasan:
+      "Website Himpunan Mahasiswa Sistem Informasi, web ini menggunakan framework Laravel & Inertia",
     url: "https://himasisfoupnvy.com/",
   },
   {
@@ -56,7 +56,8 @@ export const Project = [
     nameproject: Project2,
     jenis: "web",
     describe: "Website Portofolio",
-    penjelasan: "Web ini dibangun menggunakan framework Next.js, untuk keperluan pribadi",
+    penjelasan:
+      "Web ini dibangun menggunakan framework Next.js, untuk keperluan pribadi",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -64,7 +65,8 @@ export const Project = [
     nameproject: Project3,
     jenis: "web",
     describe: "Website Informasi Kebakaran",
-    penjelasan: "Ini adalah website sistem informasi manajemen bencana kebakaran",
+    penjelasan:
+      "Ini adalah website sistem informasi manajemen bencana kebakaran",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -72,7 +74,8 @@ export const Project = [
     nameproject: Project4,
     jenis: "web",
     describe: "Website Portofolio",
-    penjelasan: "Web ini dibangun menggunakan framework Next.js, untuk keperluan dokumentasi",
+    penjelasan:
+      "Web ini dibangun menggunakan framework Next.js, untuk keperluan dokumentasi",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -80,7 +83,8 @@ export const Project = [
     nameproject: Project5,
     jenis: "web",
     describe: "Website Persewaan",
-    penjelasan: "Ini adalah web persewaan terdapat panel admin juga untuk memanatu dan mengedit barang yang akan disewakan",
+    penjelasan:
+      "Ini adalah web persewaan terdapat panel admin juga untuk memanatu dan mengedit barang yang akan disewakan",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -88,7 +92,8 @@ export const Project = [
     nameproject: Project6,
     jenis: "web",
     describe: "Website Informasi manajemen bencana angin topan",
-    penjelasan: "Website ini menyediakan fitur yang cukup banyak dibuat menggunakan Framework Next.js dan terdapat panel admin untuk mengedit",
+    penjelasan:
+      "Website ini menyediakan fitur yang cukup banyak dibuat menggunakan Framework Next.js dan terdapat panel admin untuk mengedit",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -96,7 +101,8 @@ export const Project = [
     nameproject: Project7,
     jenis: "web",
     describe: "Website #Pandawara",
-    penjelasan: "Website ini dibuat untuk informasi kegiatan bersih-bersih lingkungan, terdapat panel admin untuk mengedit",
+    penjelasan:
+      "Website ini dibuat untuk informasi kegiatan bersih-bersih lingkungan, terdapat panel admin untuk mengedit",
     url: "https://www.amrsabilly.my.id/",
   },
   {
@@ -110,9 +116,10 @@ export const Project = [
 ];
 
 export const NavItem = [
-  { id: 1, name: "About me", href: "#about-me" },
-  { id: 2, name: "Certification", href: "#certification" },
-  { id: 3, name: "Project", href: "#project" },
-  { id: 4, name: "My skill", href: "#my-skill" },
-  { id: 5, name: "Contact", href: "#contact" },
+  { id: 1, name: "Tentang", href: "#about-me" },
+  { id: 2, name: "Pengalaman", href: "#work-experience" },
+  { id: 3, name: "Sertifikat", href: "#certification" },
+  { id: 4, name: "Proyek", href: "#project" },
+  { id: 5, name: "Keahlian", href: "#my-skill" },
+  { id: 6, name: "Layanan", href: "#services" },
 ];
