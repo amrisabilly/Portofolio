@@ -32,96 +32,6 @@ import ResponsiveCarousel from "@/components/ResponsiveCarousel";
 import CertificationModal from "@/components/CertificationModal";
 import LoadingScreen from "@/components/LoadingScreen";
 
-// Add particle type interface
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  duration: number;
-}
-
-// Animated background particles - OPTIMIZED
-const AnimatedBackground = () => {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    // Kurangi jumlah partikel drastis dari 8 menjadi 3 untuk performa
-    const newParticles: Particle[] = Array.from({ length: 3 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 2 + 1, // Ukuran lebih kecil
-      duration: Math.random() * 15 + 10, // Durasi lebih lama untuk animasi lebih lambat
-    }));
-    setParticles(newParticles);
-  }, []);
-
-  return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            backgroundColor: "#00A8CD",
-            opacity: 0.08, // Opacity lebih rendah
-          }}
-          animate={{
-            y: [-8, 8, -8], // Range gerakan lebih kecil
-            x: [-4, 4, -4],
-            opacity: [0.03, 0.08, 0.03],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-
-      {/* Hapus beberapa elemen dekoratif yang berat */}
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full blur-3xl"
-        style={{
-          background: "#00A8CD",
-          opacity: 0.04, // Opacity lebih rendah
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.02, 0.06, 0.02],
-        }}
-        transition={{
-          duration: 20, // Durasi lebih lama
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-1/4 left-1/3 w-40 h-40 rounded-full blur-3xl"
-        style={{
-          background: "#00A8CD",
-          opacity: 0.04,
-        }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.04, 0.02, 0.04],
-        }}
-        transition={{
-          duration: 25, // Durasi lebih lama
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-    </div>
-  );
-};
-
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -234,8 +144,6 @@ const HomePage = () => {
       className="min-h-screen text-white font-primary relative overflow-hidden"
       style={{ backgroundColor: "#14181A" }}
     >
-      <AnimatedBackground />
-
       <div className="container mx-auto relative z-10 px-6 md:px-12 lg:px-20">
         <Navbar />
 
@@ -439,62 +347,40 @@ const HomePage = () => {
             viewport={{ once: true, amount: 0.5 }}
           >
             <div className="relative">
-              {/* Simplified background circles - mengurangi elemen dekoratif */}
-              <motion.div
+              {/* Hapus semua animasi bergerak, hanya sisakan background statis */}
+              <div
                 className="absolute -inset-4 rounded-full blur-2xl"
                 style={{
                   background: "#00A8CD",
                   opacity: 0.06,
                 }}
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0.04, 0.08, 0.04],
-                }}
-                transition={{
-                  duration: 8, // Durasi lebih lama
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
               />
 
-              {/* Hapus beberapa motion.div yang tidak perlu */}
-              {/* Decorative border pattern - simplified */}
+              {/* Hapus decorative border pattern yang berputar */}
               <div
                 className="absolute inset-0 rounded-full border-2 border-dashed flex items-center justify-center"
                 style={{
                   borderColor: "#00A8CD15",
-                  animation: "spin 40s linear infinite", // CSS animation lebih ringan
                 }}
               >
                 <div
                   className="w-1/2 h-1/2 rounded-full border-2 border-dashed"
                   style={{
                     borderColor: "#00A8CD15",
-                    animation: "spin 30s linear infinite reverse",
                   }}
                 ></div>
               </div>
 
-              {/* Profile image */}
+              {/* Profile image tanpa animasi bergerak */}
               <div className="relative z-10 p-5">
-                <motion.div
-                  className="relative"
-                  animate={{
-                    y: [-3, 3, -3], // Range gerakan lebih kecil
-                  }}
-                  transition={{
-                    duration: 8, // Durasi lebih lama
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
+                <div className="relative">
                   <Image
                     src={Profile1}
                     alt="Profile"
                     className="w-full max-w-lg mx-auto drop-shadow-2xl"
                     priority
                   />
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -521,22 +407,14 @@ const HomePage = () => {
                   style={{ borderColor: "#00A8CD" }}
                 ></div>
 
-                {/* Simplified background blur */}
-                <motion.div
+                {/* Hapus animasi bergerak pada background blur */}
+                <div
                   className="absolute -inset-4 rounded-2xl blur-xl"
                   style={{
                     background: "#00A8CD",
                     opacity: 0.04,
                   }}
-                  animate={{
-                    opacity: [0.03, 0.06, 0.03],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                ></motion.div>
+                ></div>
 
                 {/* Main image with frame */}
                 <motion.div
@@ -1155,20 +1033,9 @@ const HomePage = () => {
             ></div>
 
             <div className="relative overflow-hidden py-12 px-8">
-              <motion.div
-                className="flex gap-8 w-max items-center mb-8"
-                animate={{
-                  x: ["0%", "-50%"],
-                }}
-                transition={{
-                  x: {
-                    duration: 25,
-                    ease: "linear",
-                    repeat: Infinity,
-                  },
-                }}
-              >
-                {[...Skill, ...Skill].map((skill, index) => (
+              {/* Hapus animasi infinite scroll, ganti dengan grid statis */}
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+                {Skill.map((skill, index) => (
                   <motion.div
                     key={index}
                     className="flex-shrink-0 p-6 rounded-2xl border shadow-lg group"
@@ -1185,12 +1052,11 @@ const HomePage = () => {
                     whileHover={{ scale: 1.1, y: -5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <div className="relative">
-                      <motion.div
+                    <div className="relative flex items-center justify-center">
+                      {/* Hapus animasi berulang */}
+                      <div
                         className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ backgroundColor: "#00A8CD15" }}
-                        animate={{ scale: [0.9, 1.1, 0.9] }}
-                        transition={{ duration: 3, repeat: Infinity }}
                       />
                       <Image
                         src={skill.nameskill}
@@ -1201,7 +1067,7 @@ const HomePage = () => {
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -1740,5 +1606,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;

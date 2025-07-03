@@ -102,7 +102,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
         {/* Previous Button */}
         <motion.button
           onClick={prevSlide}
-          className="w-10 h-10 md:w-16 md:h-16 rounded-lg md:rounded-xl backdrop-blur-md border shadow-xl transition-all duration-300 group relative overflow-hidden flex-shrink-0"
+          className="w-10 h-10 md:w-16 md:h-16 rounded-lg md:rounded-xl backdrop-blur-md border shadow-xl transition-all duration-300 group relative overflow-hidden flex-shrink-0 flex items-center justify-center"
           style={{
             backgroundColor: "rgba(20, 24, 26, 0.85)",
             borderColor: "rgba(0, 168, 205, 0.4)",
@@ -251,7 +251,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
         {/* Next Button */}
         <motion.button
           onClick={nextSlide}
-          className="w-10 h-10 md:w-16 md:h-16 rounded-lg md:rounded-xl backdrop-blur-md border shadow-xl transition-all duration-300 group relative overflow-hidden flex-shrink-0"
+          className="w-10 h-10 md:w-16 md:h-16 rounded-lg md:rounded-xl backdrop-blur-md border shadow-xl transition-all duration-300 group relative overflow-hidden flex-shrink-0 flex items-center justify-center"
           style={{
             backgroundColor: "rgba(20, 24, 26, 0.85)",
             borderColor: "rgba(0, 168, 205, 0.4)",
