@@ -738,14 +738,18 @@ const HomePage = () => {
             certifications={certifications}
             currentSlide={currentSlide}
             setCurrentSlide={setCurrentSlide}
-            onCertificationClick={setSelectedCertification}
+            onCertificationClick={(cert) => {
+              setSelectedCertification(cert);
+            }}
           />
 
           {/* Certification Modal */}
           {selectedCertification && (
             <CertificationModal
               certification={selectedCertification}
-              onClose={() => setSelectedCertification(null)}
+              onClose={() => {
+                setSelectedCertification(null);
+              }}
             />
           )}
         </section>
