@@ -158,7 +158,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
               }
             }}
           >
-            {certifications.map((cert, idx) => (
+            {certifications.map((cert) => (
               <motion.div
                 key={cert.id}
                 className="flex-shrink-0 px-2 md:px-3"
