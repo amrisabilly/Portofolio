@@ -125,7 +125,6 @@ const AnimatedBackground = () => {
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Define the certification type
@@ -140,19 +139,6 @@ const HomePage = () => {
 
   const [selectedCertification, setSelectedCertification] =
     useState<CertificationType | null>(null);
-
-  // Check if we're on client side and set screen size
-  useEffect(() => {
-    const checkScreenSize = () => {
-      if (typeof window !== "undefined") {
-        setIsMobile(window.innerWidth < 768);
-      }
-    };
-
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   // Handle loading completion
   const handleLoadingComplete = () => {
@@ -735,7 +721,7 @@ const HomePage = () => {
                     className="text-xl font-bold"
                     style={{ color: "#00A8CD" }}
                   >
-                    Pengembang Frontend
+                    Frontend Developer
                   </h3>
                   <p className="text-slate-300 text-sm">
                     HIMASISO UPNYK &middot;{" "}
@@ -744,7 +730,7 @@ const HomePage = () => {
                 </div>
               </div>
               <p className="text-slate-200 mb-4">
-                Berperan sebagai Pengembang Frontend di HIMASISO UPNYK,
+                Berperan sebagai Frontend Developer di HIMASISO UPNYK,
                 mengembangkan dan memelihara website organisasi serta mendukung
                 berbagai acara digital.
               </p>
@@ -784,7 +770,7 @@ const HomePage = () => {
                     className="text-xl font-bold"
                     style={{ color: "#00A8CD" }}
                   >
-                    Staf Pengembang Backend
+                    Staff Backend Developer
                   </h3>
                   <p className="text-slate-300 text-sm">
                     PT Berbinar Insight Full &middot;{" "}
@@ -1216,8 +1202,6 @@ const HomePage = () => {
                   </motion.div>
                 ))}
               </motion.div>
-
-             
             </div>
           </div>
         </section>
@@ -1756,6 +1740,5 @@ const HomePage = () => {
     </div>
   );
 };
-
 
 export default HomePage;
