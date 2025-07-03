@@ -41,11 +41,8 @@ const LoadingScreen = ({
       "Hampir Selesai...",
     ];
 
-    let progressInterval: NodeJS.Timeout;
-    let textInterval: NodeJS.Timeout;
-
     // Progress animation with phases
-    progressInterval = setInterval(() => {
+    const progressInterval = setInterval(() => {
       setProgress((prev) => {
         const newProgress = prev + (Math.random() * 3 + 1);
 
@@ -64,7 +61,7 @@ const LoadingScreen = ({
     }, 80);
 
     // Loading text animation
-    textInterval = setInterval(() => {
+    const textInterval = setInterval(() => {
       setLoadingText((prev) => {
         const currentIndex = loadingMessages.indexOf(prev);
         const nextIndex = (currentIndex + 1) % loadingMessages.length;
@@ -73,8 +70,8 @@ const LoadingScreen = ({
     }, 1500);
 
     return () => {
-      if (progressInterval) clearInterval(progressInterval);
-      if (textInterval) clearInterval(textInterval);
+      clearInterval(progressInterval);
+      clearInterval(textInterval);
     };
   }, [currentPhase, onLoadingComplete]);
 
@@ -83,7 +80,8 @@ const LoadingScreen = ({
       <motion.div
         className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #0a0e12 0%, #14181a 50%, #1e252a 100%)",
+          background:
+            "linear-gradient(135deg, #0a0e12 0%, #14181a 50%, #1e252a 100%)",
         }}
         initial={{ opacity: 1 }}
         exit={{
@@ -186,7 +184,8 @@ const LoadingScreen = ({
               <motion.div
                 className="absolute inset-10 rounded-full flex items-center justify-center border"
                 style={{
-                  background: "radial-gradient(circle, #00A8CD15, #00A8CD08, transparent)",
+                  background:
+                    "radial-gradient(circle, #00A8CD15, #00A8CD08, transparent)",
                   borderColor: "#00A8CD25",
                   backdropFilter: "blur(20px)",
                 }}
@@ -275,7 +274,8 @@ const LoadingScreen = ({
             <motion.h1
               className="text-3xl font-light tracking-wide"
               style={{
-                background: "linear-gradient(135deg, #ffffff 0%, #00A8CD 50%, #ffffff 100%)",
+                background:
+                  "linear-gradient(135deg, #ffffff 0%, #00A8CD 50%, #ffffff 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 fontFamily: "system-ui, sans-serif",
@@ -385,7 +385,8 @@ const LoadingScreen = ({
         <motion.div
           className="absolute top-1/4 left-1/4 w-40 h-40 rounded-full blur-3xl pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(0, 168, 205, 0.08), transparent)",
+            background:
+              "radial-gradient(circle, rgba(0, 168, 205, 0.08), transparent)",
           }}
           animate={{
             scale: [1, 1.2, 1],
@@ -403,7 +404,8 @@ const LoadingScreen = ({
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full blur-3xl pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(0, 196, 255, 0.06), transparent)",
+            background:
+              "radial-gradient(circle, rgba(0, 196, 255, 0.06), transparent)",
           }}
           animate={{
             scale: [1.2, 1, 1.2],
@@ -422,6 +424,5 @@ const LoadingScreen = ({
     </AnimatePresence>
   );
 };
-
 
 export default LoadingScreen;
