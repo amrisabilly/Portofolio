@@ -158,7 +158,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
               }
             }}
           >
-            {certifications.map((cert, index) => (
+            {certifications.map((cert, idx) => (
               <motion.div
                 key={cert.id}
                 className="flex-shrink-0 px-2 md:px-3"
@@ -281,29 +281,27 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
       {/* Progress Elements */}
       <div className="mt-6 md:mt-8 space-y-3 md:space-y-4">
         <div className="flex justify-center items-center space-x-2 md:space-x-3">
-          {Array.from({ length: getMaxSlide() + 1 }).map((_, idx) => {
-            return (
-              <motion.button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`relative overflow-hidden transition-all duration-300 ${
-                  currentSlide === idx
-                    ? "w-6 md:w-10 h-2 md:h-3 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-full"
-                    : "w-2 md:w-3 h-2 md:h-3 bg-gray-600 hover:bg-gray-500 rounded-full"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {currentSlide === idx && (
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-full"
-                    animate={{ opacity: [0.7, 1, 0.7] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                )}
-              </motion.button>
-            );
-          })}
+          {Array.from({ length: getMaxSlide() + 1 }).map((_, idx) => (
+            <motion.button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`relative overflow-hidden transition-all duration-300 ${
+                currentSlide === idx
+                  ? "w-6 md:w-10 h-2 md:h-3 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-full"
+                  : "w-2 md:w-3 h-2 md:h-3 bg-gray-600 hover:bg-gray-500 rounded-full"
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {currentSlide === idx && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-full"
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              )}
+            </motion.button>
+          ))}
         </div>
       </div>
     </div>
