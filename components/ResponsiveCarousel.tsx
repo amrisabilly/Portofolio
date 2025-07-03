@@ -281,7 +281,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({
       {/* Progress Elements */}
       <div className="mt-6 md:mt-8 space-y-3 md:space-y-4">
         <div className="flex justify-center items-center space-x-2 md:space-x-3">
-          {Array.from({ length: getMaxSlide() + 1 }).map((_, idx) => (
+          {Array.from({ length: getMaxSlide() + 1 }).map((__, idx) => (
             <motion.button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
