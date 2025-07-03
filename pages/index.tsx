@@ -5,18 +5,17 @@ import Navbar from "@/components/Navbar";
 import Profile1 from "@/public/Images/Profile1.svg";
 import Profile2 from "@/public/Images/Profile2.svg";
 import Certification from "@/public/Images/Certification.svg";
-import Certification1 from "@/public/sertif1.png";
-import Certification2 from "@/public/sertif2.png";
-import Certification3 from "@/public/sertif3.png";
-import Certification4 from "@/public/sertif4.png";
-import Certification5 from "@/public/sertif5.png";
-import Certification6 from "@/public/sertif6.png";
-import Certification7 from "@/public/sertif7.png";
+import Certification1 from "@/public/sertif1.webp";
+import Certification2 from "@/public/sertif2.webp";
+import Certification3 from "@/public/sertif3.webp";
+import Certification4 from "@/public/sertif4.webp";
+import Certification5 from "@/public/sertif5.webp";
+import Certification6 from "@/public/sertif6.webp";
+import Certification7 from "@/public/sertif7.webp";
 
-import FormContact from "@/components/FormContact";
 //Assets
 import { Project, Skill } from "../components/Asset/assets";
-
+import FormContact from "@/components/FormContact";
 //Icons
 import Download from "@/public/Images/Download.svg";
 import ShowAll from "@/public/Images/ShowAll.svg";
@@ -29,6 +28,9 @@ import GitHub from "@/public/Images/GitHub.svg";
 import type { StaticImageData } from "next/image";
 
 import { motion } from "framer-motion";
+import ResponsiveCarousel from "@/components/ResponsiveCarousel";
+import CertificationModal from "@/components/CertificationModal";
+import LoadingScreen from "@/components/LoadingScreen";
 
 // Add particle type interface
 interface Particle {
@@ -39,17 +41,18 @@ interface Particle {
   duration: number;
 }
 
-// Animated background particles
+// Animated background particles - OPTIMIZED
 const AnimatedBackground = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    const newParticles: Particle[] = Array.from({ length: 50 }, (_, i) => ({
+    // Kurangi jumlah partikel drastis dari 8 menjadi 3 untuk performa
+    const newParticles: Particle[] = Array.from({ length: 3 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
-      duration: Math.random() * 20 + 10,
+      size: Math.random() * 2 + 1, // Ukuran lebih kecil
+      duration: Math.random() * 15 + 10, // Durasi lebih lama untuk animasi lebih lambat
     }));
     setParticles(newParticles);
   }, []);
@@ -66,12 +69,12 @@ const AnimatedBackground = () => {
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             backgroundColor: "#00A8CD",
-            opacity: 0.15,
+            opacity: 0.08, // Opacity lebih rendah
           }}
           animate={{
-            y: [-20, 20, -20],
-            x: [-10, 10, -10],
-            opacity: [0.05, 0.15, 0.05],
+            y: [-8, 8, -8], // Range gerakan lebih kecil
+            x: [-4, 4, -4],
+            opacity: [0.03, 0.08, 0.03],
           }}
           transition={{
             duration: particle.duration,
@@ -81,53 +84,36 @@ const AnimatedBackground = () => {
         />
       ))}
 
+      {/* Hapus beberapa elemen dekoratif yang berat */}
       <motion.div
-        className="absolute bottom-20 right-10 w-24 h-24 rounded-lg"
+        className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full blur-3xl"
         style={{
           background: "#00A8CD",
-          opacity: 0.08,
+          opacity: 0.04, // Opacity lebih rendah
         }}
         animate={{
-          rotate: -360,
-          y: [-10, 10, -10],
+          scale: [1, 1.1, 1],
+          opacity: [0.02, 0.06, 0.02],
         }}
         transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Extra decorative elements */}
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full blur-3xl"
-        style={{
-          background: "#00A8CD",
-          opacity: 0.05,
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.03, 0.08, 0.03],
-        }}
-        transition={{
-          duration: 12,
+          duration: 20, // Durasi lebih lama
           repeat: Infinity,
           repeatType: "reverse",
         }}
       />
 
       <motion.div
-        className="absolute bottom-1/4 left-1/3 w-60 h-60 rounded-full blur-3xl"
+        className="absolute bottom-1/4 left-1/3 w-40 h-40 rounded-full blur-3xl"
         style={{
           background: "#00A8CD",
-          opacity: 0.06,
+          opacity: 0.04,
         }}
         animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.06, 0.03, 0.06],
+          scale: [1.1, 1, 1.1],
+          opacity: [0.04, 0.02, 0.04],
         }}
         transition={{
-          duration: 18,
+          duration: 25, // Durasi lebih lama
           repeat: Infinity,
           repeatType: "reverse",
         }}
@@ -139,6 +125,9 @@ const AnimatedBackground = () => {
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Define the certification type
   type CertificationType = {
@@ -152,6 +141,31 @@ const HomePage = () => {
 
   const [selectedCertification, setSelectedCertification] =
     useState<CertificationType | null>(null);
+
+  // Check if we're on client side and set screen size
+  useEffect(() => {
+    setIsClient(true);
+
+    const checkScreenSize = () => {
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth < 768);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Handle loading completion
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  // Show loading screen while loading
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
 
   // Expanded certifications data with more certificates
   const certifications: CertificationType[] = [
@@ -230,23 +244,18 @@ const HomePage = () => {
     },
   ];
 
-  // Auto slide effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % certifications.length);
-    }, 4000); // 4 seconds per slide
-
-    return () => clearInterval(interval);
-  }, [certifications.length]);
-
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % certifications.length);
+    const maxSlide = isMobile
+      ? certifications.length - 1
+      : certifications.length - 3;
+    setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + certifications.length) % certifications.length
-    );
+    const maxSlide = isMobile
+      ? certifications.length - 1
+      : certifications.length - 3;
+    setCurrentSlide((prev) => (prev <= 0 ? maxSlide : prev - 1));
   };
 
   const limitedProjects = showAll ? Project : Project.slice(0, 3);
@@ -268,6 +277,7 @@ const HomePage = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div className="space-y-3">
               <motion.div
@@ -341,6 +351,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
+              viewport={{ once: true, amount: 0.5 }}
             >
               <a href="#contact">
                 <button
@@ -456,68 +467,42 @@ const HomePage = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div className="relative">
-              {/* Animated background circles */}
+              {/* Simplified background circles - mengurangi elemen dekoratif */}
               <motion.div
-                className="absolute -inset-4 rounded-full blur-3xl"
-                style={{
-                  background: "#00A8CD",
-                  opacity: 0.08,
-                }}
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.05, 0.1, 0.05],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-
-              <motion.div
-                className="absolute top-1/4 -right-10 w-40 h-40 rounded-full blur-2xl"
+                className="absolute -inset-4 rounded-full blur-2xl"
                 style={{
                   background: "#00A8CD",
                   opacity: 0.06,
                 }}
                 animate={{
-                  y: [-10, 10, -10],
+                  scale: [1, 1.05, 1],
                   opacity: [0.04, 0.08, 0.04],
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 8, // Durasi lebih lama
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
               />
 
-              <motion.div
-                className="absolute bottom-1/4 -left-10 w-40 h-40 rounded-full blur-2xl"
-                style={{
-                  background: "#00A8CD",
-                  opacity: 0.06,
-                }}
-                animate={{
-                  y: [10, -10, 10],
-                  opacity: [0.06, 0.1, 0.06],
-                }}
-                transition={{
-                  duration: 7,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-
-              {/* Decorative border pattern */}
+              {/* Hapus beberapa motion.div yang tidak perlu */}
+              {/* Decorative border pattern - simplified */}
               <div
-                className="absolute inset-0 rounded-full border-4 border-dashed flex items-center justify-center animate-spin-slow"
-                style={{ borderColor: "#00A8CD20" }}
+                className="absolute inset-0 rounded-full border-2 border-dashed flex items-center justify-center"
+                style={{
+                  borderColor: "#00A8CD15",
+                  animation: "spin 40s linear infinite", // CSS animation lebih ringan
+                }}
               >
                 <div
-                  className="w-1/2 h-1/2 rounded-full border-4 border-dashed animate-spin-slow-reverse"
-                  style={{ borderColor: "#00A8CD20" }}
+                  className="w-1/2 h-1/2 rounded-full border-2 border-dashed"
+                  style={{
+                    borderColor: "#00A8CD15",
+                    animation: "spin 30s linear infinite reverse",
+                  }}
                 ></div>
               </div>
 
@@ -526,10 +511,10 @@ const HomePage = () => {
                 <motion.div
                   className="relative"
                   animate={{
-                    y: [-5, 5, -5],
+                    y: [-3, 3, -3], // Range gerakan lebih kecil
                   }}
                   transition={{
-                    duration: 6,
+                    duration: 8, // Durasi lebih lama
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
@@ -554,10 +539,10 @@ const HomePage = () => {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
             >
               <div className="relative">
-                {/* Decorative elements */}
+                {/* Decorative elements - simplified */}
                 <div
                   className="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2"
                   style={{ borderColor: "#00A8CD" }}
@@ -567,17 +552,18 @@ const HomePage = () => {
                   style={{ borderColor: "#00A8CD" }}
                 ></div>
 
+                {/* Simplified background blur */}
                 <motion.div
-                  className="absolute -inset-4 rounded-2xl blur-2xl"
+                  className="absolute -inset-4 rounded-2xl blur-xl"
                   style={{
                     background: "#00A8CD",
-                    opacity: 0.06,
+                    opacity: 0.04,
                   }}
                   animate={{
-                    opacity: [0.04, 0.08, 0.04],
+                    opacity: [0.03, 0.06, 0.03],
                   }}
                   transition={{
-                    duration: 5,
+                    duration: 6,
                     repeat: Infinity,
                     repeatType: "reverse",
                   }}
@@ -590,7 +576,7 @@ const HomePage = () => {
                     backgroundColor: "#00A8CD15",
                     borderColor: "#00A8CD40",
                   }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }} // Reduce scale untuk performa
                   transition={{ duration: 0.3 }}
                 >
                   <Image
@@ -608,7 +594,7 @@ const HomePage = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
             >
               <div className="space-y-2">
                 <motion.div
@@ -703,7 +689,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -855,7 +841,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -900,314 +886,20 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          {/* Carousel Container */}
-          <div className="relative overflow-hidden">
-            {/* Main Carousel */}
-            <motion.div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{
-                transform: `translateX(-${
-                  currentSlide * (100 / Math.min(3, certifications.length))
-                }%)`,
-              }}
-              drag="x"
-              dragConstraints={{
-                left: -((certifications.length - 3) * (100 / 3)),
-                right: 0,
-              }}
-              onDragEnd={(event, info) => {
-                const threshold = 50;
-                if (info.offset.x > threshold) {
-                  prevSlide();
-                } else if (info.offset.x < -threshold) {
-                  nextSlide();
-                }
-              }}
-            >
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={cert.id}
-                  className="flex-shrink-0 px-4"
-                  style={{
-                    width: `${100 / Math.min(3, certifications.length)}%`,
-                    minWidth: "320px",
-                  }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.div
-                    className="backdrop-blur-sm border rounded-xl overflow-hidden transition-all duration-300 cursor-pointer group shadow-lg h-full"
-                    style={{
-                      backgroundColor: "#14181A60",
-                      borderColor: "#00A8CD30",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#00A8CD";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#00A8CD30";
-                    }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    onClick={() => setSelectedCertification(cert)}
-                  >
-                    <div className="relative overflow-hidden h-52">
-                      <Image
-                        src={cert.image}
-                        alt={cert.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div
-                        className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity duration-300"
-                        style={{
-                          background:
-                            "linear-gradient(to top, #14181A, #14181A60, transparent)",
-                        }}
-                      ></div>
+          {/* Use ResponsiveCarousel Component */}
+          <ResponsiveCarousel
+            certifications={certifications}
+            currentSlide={currentSlide}
+            setCurrentSlide={setCurrentSlide}
+            onCertificationClick={setSelectedCertification}
+          />
 
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <span
-                          className="px-4 py-2 text-white rounded-lg font-medium shadow-lg"
-                          style={{ backgroundColor: "#00A8CD" }}
-                        >
-                          Lihat Detail
-                        </span>
-                      </motion.div>
-
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3
-                          className="text-lg font-semibold mb-1 text-white group-hover:text-white transition-colors duration-300"
-                          style={{ color: "#00A8CD" }}
-                        >
-                          {cert.title}
-                        </h3>
-                        <p className="text-slate-200 text-sm">{cert.issuer}</p>
-                      </div>
-                    </div>
-                    <div
-                      className="p-4 border-t"
-                      style={{ borderColor: "#00A8CD30" }}
-                    >
-                      <div className="flex items-center justify-between">
-                        <p
-                          className="text-sm font-medium"
-                          style={{ color: "#00A8CD" }}
-                        >
-                          {cert.date}
-                        </p>
-                        <div
-                          className="h-8 w-8 rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: "#00A8CD30" }}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            style={{ color: "#00A8CD" }}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Certification Modal - tetap sama */}
+          {/* Certification Modal */}
           {selectedCertification && (
-            <motion.div
-              className="fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4"
-              style={{ backgroundColor: "#14181AE6" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedCertification(null)}
-            >
-              <motion.div
-                className="rounded-2xl border p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-                style={{
-                  backgroundColor: "#14181A",
-                  borderColor: "#00A8CD40",
-                }}
-                initial={{ scale: 0.8, opacity: 0, y: 30 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 10 }}
-                transition={{ type: "spring", damping: 25 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex justify-between items-start mb-6">
-                  <div className="space-y-1">
-                    <p
-                      className="text-sm font-medium"
-                      style={{ color: "#00A8CD" }}
-                    >
-                      {selectedCertification.date}
-                    </p>
-                    <h3
-                      className="text-2xl font-bold"
-                      style={{
-                        background: `linear-gradient(to right, #ffffff, #00A8CD)`,
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    >
-                      {selectedCertification.title}
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => setSelectedCertification(null)}
-                    className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200"
-                    style={{
-                      backgroundColor: "#14181A80",
-                      color: "#ffffff",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#00A8CD";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#14181A80";
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                <div
-                  className="relative mb-6 rounded-xl overflow-hidden border shadow-lg"
-                  style={{ borderColor: "#00A8CD40" }}
-                >
-                  <Image
-                    src={selectedCertification.image}
-                    alt={selectedCertification.title}
-                    className="w-full h-64 object-cover"
-                    loading="lazy"
-                  />
-                  <div
-                    className="absolute inset-0 opacity-60"
-                    style={{
-                      background:
-                        "linear-gradient(to top, #14181A, transparent)",
-                    }}
-                  ></div>
-                  <div
-                    className="absolute bottom-4 left-4 px-4 py-1 rounded-lg shadow-lg"
-                    style={{ backgroundColor: "#00A8CD" }}
-                  >
-                    <p className="text-white font-medium">
-                      {selectedCertification.issuer}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="p-2 rounded-lg"
-                      style={{
-                        backgroundColor: "#00A8CD20",
-                        color: "#00A8CD",
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-slate-200">
-                      Dikeluarkan: {selectedCertification.date}
-                    </span>
-                  </div>
-
-                  <div
-                    className="p-4 rounded-xl border"
-                    style={{
-                      backgroundColor: "#14181A50",
-                      borderColor: "#00A8CD40",
-                    }}
-                  >
-                    <h4
-                      className="text-lg font-semibold mb-2"
-                      style={{ color: "#00A8CD" }}
-                    >
-                      Deskripsi
-                    </h4>
-                    <p className="text-slate-200 leading-relaxed">
-                      {selectedCertification.description}
-                    </p>
-                  </div>
-
-                  <div className="flex justify-end">
-                    <button
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg"
-                      style={{
-                        backgroundColor: "#00A8CD",
-                        boxShadow: "0 10px 25px #00A8CD20",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = "#0088AA";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = "#00A8CD";
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                        />
-                      </svg>
-                      <span className="text-white">Unduh Sertifikat</span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+            <CertificationModal
+              certification={selectedCertification}
+              onClose={() => setSelectedCertification(null)}
+            />
           )}
         </section>
 
@@ -1218,7 +910,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1431,7 +1123,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1542,53 +1234,7 @@ const HomePage = () => {
                 ))}
               </motion.div>
 
-              <motion.div
-                className="flex gap-8 w-max items-center"
-                animate={{
-                  x: ["-50%", "0%"],
-                }}
-                transition={{
-                  x: {
-                    duration: 25,
-                    ease: "linear",
-                    repeat: Infinity,
-                  },
-                }}
-              >
-                {[...Skill, ...Skill].map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex-shrink-0 p-6 rounded-2xl border shadow-lg group"
-                    style={{
-                      backgroundColor: "#14181A90",
-                      borderColor: "#00A8CD30",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#00A8CD";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#00A8CD30";
-                    }}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <div className="relative">
-                      <motion.div
-                        className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{ backgroundColor: "#00A8CD15" }}
-                        animate={{ scale: [0.9, 1.1, 0.9] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      />
-                      <Image
-                        src={skill.nameskill}
-                        alt="skill"
-                        className="w-14 h-14 md:w-16 md:h-16 object-contain relative z-10"
-                        loading="lazy"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+             
             </div>
           </div>
         </section>
@@ -1600,7 +1246,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1858,7 +1504,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div
               className="backdrop-blur-sm border rounded-2xl p-8 shadow-lg"
@@ -1949,7 +1595,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Mari{" "}
@@ -1976,33 +1622,23 @@ const HomePage = () => {
         <section id="contact" className="py-28">
           <div className="relative">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <motion.div
-                className="absolute top-1/4 left-10 w-40 h-40 rounded-full blur-3xl"
-                style={{ backgroundColor: "#00A8CD", opacity: 0.04 }}
+              {/* Jika ingin lebih ringan, hapus/matikan motion.div dekorasi besar di sini */}
+              {/* <motion.div
+                className="absolute inset-0 rounded-full blur-3xl"
+                style={{
+                  background: "#00A8CD",
+                  opacity: 0.06,
+                }}
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.03, 0.06, 0.03],
+                  scale: [1, 1.1, 1],
+                  opacity: [0.05, 0.1, 0.05],
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 6,
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-              />
-
-              <motion.div
-                className="absolute bottom-1/4 right-10 w-60 h-60 rounded-full blur-3xl"
-                style={{ backgroundColor: "#00A8CD", opacity: 0.05 }}
-                animate={{
-                  scale: [1.2, 1, 1.2],
-                  opacity: [0.05, 0.03, 0.05],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
+              /> */}
             </div>
 
             <div className="text-center relative z-10">
@@ -2015,8 +1651,8 @@ const HomePage = () => {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                               transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.5 }}
               >
                 Siap Berkolaborasi?
               </motion.div>
@@ -2025,7 +1661,7 @@ const HomePage = () => {
                 <motion.h2
                   className="text-6xl md:text-8xl font-bold"
                   initial={{ opacity: 0, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.16, 1, 0.3, 1],
