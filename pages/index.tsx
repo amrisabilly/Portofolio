@@ -126,7 +126,6 @@ const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Define the certification type
@@ -144,8 +143,6 @@ const HomePage = () => {
 
   // Check if we're on client side and set screen size
   useEffect(() => {
-    setIsClient(true);
-
     const checkScreenSize = () => {
       if (typeof window !== "undefined") {
         setIsMobile(window.innerWidth < 768);
@@ -243,20 +240,6 @@ const HomePage = () => {
         "Sertifikasi dasar Artificial Intelligence (AI) yang mencakup konsep AI, pemanfaatan data, dasar-dasar Machine Learning, dan pengenalan Deep Learning.",
     },
   ];
-
-  const nextSlide = () => {
-    const maxSlide = isMobile
-      ? certifications.length - 1
-      : certifications.length - 3;
-    setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    const maxSlide = isMobile
-      ? certifications.length - 1
-      : certifications.length - 3;
-    setCurrentSlide((prev) => (prev <= 0 ? maxSlide : prev - 1));
-  };
 
   const limitedProjects = showAll ? Project : Project.slice(0, 3);
 
@@ -1773,5 +1756,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;
