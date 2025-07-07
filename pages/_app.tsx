@@ -1,3 +1,4 @@
+import "@newrelic/browser-agent/loaders/browser-agent";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -8,7 +9,7 @@ import "aos/dist/aos.css"; // Import CSS AOS
 import { useEffect } from "react";
 import AOS from "aos";
 
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter(); // Menggunakan useRouter untuk mendapatkan pathname
 
   useEffect(() => {
@@ -79,3 +80,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default MyApp;

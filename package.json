@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@newrelic/browser-agent": "^1.293.0",
     "aos": "^2.3.4",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^11.18.0",

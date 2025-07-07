@@ -46,7 +46,7 @@ export const Project = [
     id: 1,
     nameproject: Project1,
     jenis: "web",
-    describe: "Website Himasisfo",
+    describe: "Website HIMASISFO",
     penjelasan:
       "Website Himpunan Mahasiswa Sistem Informasi, web ini menggunakan framework Laravel & Inertia",
     url: "https://himasisfoupnvy.com/",
@@ -58,7 +58,7 @@ export const Project = [
     describe: "Website Portofolio",
     penjelasan:
       "Web ini dibangun menggunakan framework Next.js, untuk keperluan pribadi",
-    url: "https://www.amrsabilly.my.id/",
+    url: "https://github.com/amrisabilly/Portofolio.git",
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ export const Project = [
     describe: "Website Informasi Kebakaran",
     penjelasan:
       "Ini adalah website sistem informasi manajemen bencana kebakaran",
-    url: "https://www.amrsabilly.my.id/",
+    url: "https://github.com/amrisabilly/Website-Kebakaran-Hutan.git",
   },
   {
     id: 4,
@@ -75,8 +75,8 @@ export const Project = [
     jenis: "web",
     describe: "Website Portofolio",
     penjelasan:
-      "Web ini dibangun menggunakan framework Next.js, untuk keperluan dokumentasi",
-    url: "https://www.amrsabilly.my.id/",
+      "Website ini dibangun dengan Next.js sebagai platform untuk menampilkan portofolio dan showcase proyek-proyek pribadi.",
+    url: "https://github.com/amrisabilly/Project-portofolio.git",
   },
   {
     id: 5,
@@ -85,7 +85,7 @@ export const Project = [
     describe: "Website Persewaan",
     penjelasan:
       "Ini adalah web persewaan terdapat panel admin juga untuk memanatu dan mengedit barang yang akan disewakan",
-    url: "https://www.amrsabilly.my.id/",
+    url: "https://github.com/amrisabilly/Website-Aku_sewa.git",
   },
   {
     id: 6,
@@ -94,7 +94,7 @@ export const Project = [
     describe: "Website Informasi manajemen bencana angin topan",
     penjelasan:
       "Website ini menyediakan fitur yang cukup banyak dibuat menggunakan Framework Next.js dan terdapat panel admin untuk mengedit",
-    url: "https://www.amrsabilly.my.id/",
+    url: "https://github.com/amrisabilly/project_topan.git",
   },
   {
     id: 7,
@@ -103,7 +103,7 @@ export const Project = [
     describe: "Website #Pandawara",
     penjelasan:
       "Website ini dibuat untuk informasi kegiatan bersih-bersih lingkungan, terdapat panel admin untuk mengedit",
-    url: "https://www.amrsabilly.my.id/",
+    url: "https://github.com/amrisabilly/project-pandawara.git",
   },
   {
     id: 8,

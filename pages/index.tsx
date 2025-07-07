@@ -490,7 +490,7 @@ const HomePage = () => {
                 mengembangkan solusi teknologi untuk mendukung efisiensi dan
                 inovasi. Berpengalaman dalam pengembangan web dengan JavaScript,
                 React JS, dan MySQL, serta desain UI/UX yang berfokus pada
-                pengalaman pengguna.
+                pengalaman pengguna dan aspek keamanan.
               </motion.p>
 
               <motion.div
@@ -506,6 +506,8 @@ const HomePage = () => {
                   "Next.js",
                   "UI/UX Design",
                   "MySQL",
+                  "Node.js",
+                  "Laravel",
                 ].map((skill, index) => (
                   <span
                     key={index}
@@ -658,7 +660,7 @@ const HomePage = () => {
               </div>
               <p className="text-slate-200 mb-4">
                 Bertanggung jawab sebagai Staf Pengembang Backend di PT Berbinar
-                Insight Full, membangun dan mengelola API serta sistem backend
+                Insight Full, membangun dan mengelola database serta sistem backend
                 untuk kebutuhan bisnis.
               </p>
               <a
