@@ -1,4 +1,3 @@
-import "@newrelic/browser-agent/loaders/browser-agent";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -13,6 +12,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter(); // Menggunakan useRouter untuk mendapatkan pathname
 
   useEffect(() => {
+    // Dynamically import New Relic browser agent only on client
+    if (typeof window !== "undefined") {
+      import("@newrelic/browser-agent/loaders/browser-agent");
+    }
     AOS.init({
       duration: 1000, // Durasi animasi dalam milidetik
       offset: 100, // Jarak sebelum elemen terlihat untuk memulai animasi
