@@ -31,11 +31,13 @@ import { motion } from "framer-motion";
 import ResponsiveCarousel from "@/components/ResponsiveCarousel";
 import CertificationModal from "@/components/CertificationModal";
 import LoadingScreen from "@/components/LoadingScreen";
+import ProjectModal from "@/components/ProjectModal";
 
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   // Define the certification type
   type CertificationType = {
@@ -660,8 +662,8 @@ const HomePage = () => {
               </div>
               <p className="text-slate-200 mb-4">
                 Bertanggung jawab sebagai Staf Pengembang Backend di PT Berbinar
-                Insight Full, membangun dan mengelola database serta sistem backend
-                untuk kebutuhan bisnis.
+                Insight Full, membangun dan mengelola database serta sistem
+                backend untuk kebutuhan bisnis psikolog.
               </p>
               <a
                 href="https://www.linkedin.com/in/amri-sabilly-1a2a44319/"
@@ -887,12 +889,10 @@ const HomePage = () => {
                     }}
                   ></div>
 
-                  {/* CTA Button */}
+                  {/* Updated CTA Button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <motion.a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
+                      onClick={() => setSelectedProject(project)}
                       className="text-white px-6 py-2 rounded-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg"
                       style={{ backgroundColor: "#00A8CD" }}
                       onMouseEnter={(e) => {
@@ -904,8 +904,8 @@ const HomePage = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Lihat Proyek
-                    </motion.a>
+                      Lihat Detail
+                    </motion.button>
                   </div>
                 </div>
 
@@ -1608,6 +1608,14 @@ const HomePage = () => {
             </div>
           </div>
         </section>
+
+        {/* Project Modal */}
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </div>
   );
