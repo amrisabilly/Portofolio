@@ -33,11 +33,28 @@ import CertificationModal from "@/components/CertificationModal";
 import LoadingScreen from "@/components/LoadingScreen";
 import ProjectModal from "@/components/ProjectModal";
 
+// Define the project type
+type ProjectType = {
+  id: number;
+  nameproject: StaticImageData;
+  jenis: string;
+  describe: string;
+  penjelasan: string;
+  url: string;
+  github?: string;
+  figma?: string;
+  documentationImages?: StaticImageData[];
+  technologies?: string[];
+  features?: string[];
+};
+
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
+    null
+  );
 
   // Define the certification type
   type CertificationType = {
