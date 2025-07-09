@@ -673,7 +673,7 @@ const HomePage = () => {
                   </h3>
                   <p className="text-slate-300 text-sm">
                     PT Berbinar Insight Full &middot;{" "}
-                    <span className="text-slate-400">Perusahaan Teknologi</span>
+                    <span className="text-slate-400">Perusahaan Psikolog</span>
                   </p>
                 </div>
               </div>
