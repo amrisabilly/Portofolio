@@ -10,14 +10,12 @@ import Project9 from "@/public/Images/Project9.png";
 import Project10 from "@/public/Images/Project10.png";
 import Project11 from "@/public/Images/Project11.png";
 
-
 import dok1 from "@/public/Images/dok1.jpg";
 import dok2 from "@/public/Images/dok2.png";
 import dok3 from "@/public/Images/dok3.png";
 import dok4 from "@/public/Images/dok4.png";
 import dok5 from "@/public/Images/dok5.png";
 import dok6 from "@/public/Images/dok6.png";
-
 
 import Html from "@/public/Images/Html.svg";
 import Js from "@/public/Images/Js.svg";
@@ -64,7 +62,7 @@ export const Project = [
     url: "https://himasisfoupnvy.com/",
     github: "",
     figma: "",
-    documentationImages: [Project1, dok5, dok6, dok1], 
+    documentationImages: [Project1, dok5, dok6, dok1],
     technologies: ["Laravel", "Inertia.js", "Tailwind CSS", "MySQL"],
     features: [
       "Sistem Manajemen Anggota",
@@ -83,7 +81,8 @@ export const Project = [
       "Aplikasi web monitoring sistem yang digunakan untuk memantau device secara real-time dengan dashboard interaktif.",
     url: "",
     github: "https://github.com/amrisabilly/project_monitoringWeb_RBPL.git",
-    figma: "https://www.figma.com/design/ssdVkVUYGAkLxOScz5GOhp/Untitled?node-id=0-1&t=Qf2Y3vxUcHB6ZyW7-1",
+    figma:
+      "https://www.figma.com/design/ssdVkVUYGAkLxOScz5GOhp/Untitled?node-id=0-1&t=Qf2Y3vxUcHB6ZyW7-1",
     documentationImages: [Project11, dok4, dok3],
     technologies: ["Laravel", "Blade", "JavaScript", "MySQL"],
     features: [
@@ -123,7 +122,8 @@ export const Project = [
       "Platform pemesanan catering online dengan fitur katalog menu, sistem pemesanan, dan manajemen delivery yang user-friendly.",
     url: "https://monitoringweb.decoratics.id/",
     github: "https://github.com/amrisabilly/catering_project.git",
-    figma: "https://www.figma.com/design/oJ60mgwExNbj7Py4MBVz7R/CATERING?node-id=0-1&p=f&t=rdYxnWqFh3rc46Iw-0",
+    figma:
+      "https://www.figma.com/design/oJ60mgwExNbj7Py4MBVz7R/CATERING?node-id=0-1&p=f&t=rdYxnWqFh3rc46Iw-0",
     documentationImages: [Project10, dok2],
     technologies: ["Laravel", "Vite", "Tailwind", "Mysql", "JavaScript"],
     features: [
@@ -189,7 +189,8 @@ export const Project = [
       "Versi kedua dari website portofolio yang dibangun dengan Next.js, menampilkan desain yang lebih modern dengan animasi yang halus dan optimasi performa yang lebih baik.",
     url: "https://project-portofolio-lovat.vercel.app/",
     github: "https://github.com/amrisabilly/portfolio-v2",
-    figma: "https://www.figma.com/design/57eE8cQPoOqZyyIGJ27yUE/Portofolio-Project?node-id=0-1&t=96OpOzHiEpKJdyw4-1",
+    figma:
+      "https://www.figma.com/design/57eE8cQPoOqZyyIGJ27yUE/Portofolio-Project?node-id=0-1&t=96OpOzHiEpKJdyw4-1",
     documentationImages: [Project4, Project4, Project4],
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Vercel"],
     features: [
